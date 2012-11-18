@@ -1,0 +1,33 @@
+---
+layout: default
+external:
+---
+
+<div class="content">
+  <div id="post">
+    <h1>
+	  <a href="{{ page.url }}">{{ page.title }}</a>
+    </h1>
+    <br />
+    <div class="body">
+      {{ content }}
+    </div>
+    <br />
+    <postamble datetime="{{ post.date | date: "%Y-%m%d" }} ">
+	  -- {{ page.date | date: "%b %d, %Y" }}
+    </postamble>
+    <div class="social">
+         <a href="http://twitter.com/share" class="twitter-share-button" data-count="none" data-via="cwoebker">Tweet</a>
+        <script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+    </div>
+    <!--<h4>Tags:</h4>-->
+    <ul id="post_tags">
+    {% for tag in page.tags %}
+      <li><a class="tag" href="/tag/{{ tag }}">{{ tag }}</a></li>
+    {% endfor %}
+    </ul>
+    {% include about.html %}
+    <br />
+    {% include comments.html %}
+  </div>
+</div>
