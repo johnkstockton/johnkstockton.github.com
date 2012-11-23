@@ -113,22 +113,30 @@
     });
   </script>
 
-  <!-- Google Section -->
-
-  <link href='http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz' rel='stylesheet' type='text/css' />  
+  <!-- Quantcast Tag -->
   <script type="text/javascript">
+  var _qevents = _qevents || [];
 
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-23542754-3']);
-    _gaq.push(['_setDomainName', '.imranrashid.com']);
-    _gaq.push(['_trackPageview']);
+  (function() {
+  var elem = document.createElement('script');
+  elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
+  elem.async = true;
+  elem.type = "text/javascript";
+  var scpt = document.getElementsByTagName('script')[0];
+  scpt.parentNode.insertBefore(elem, scpt);
+  })();
 
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
+  _qevents.push({
+  qacct:"p-51VzFsv4DQkFn"
+  });
   </script>
+
+  <noscript>
+  <div style="display:none;">
+  <img src="//pixel.quantserve.com/pixel/p-51VzFsv4DQkFn.gif" border="0" height="1" width="1" alt="Quantcast"/>
+  </div>
+  </noscript>
+  <!-- End Quantcast tag -->u
 
   <!-- Document Ready -->
 
