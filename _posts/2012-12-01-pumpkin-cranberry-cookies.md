@@ -6,6 +6,15 @@ tags:
     - recipe
 ---
 
+
+If you've never used fresh cranberries
+before, they should be hard, not mushy, and totally white on the inside.  They'll become soft and deep
+red when baked.  I've also made this with frozen cranberries, its still pretty good.
+
+Cutting the cranberries is the only time-consuming part of this.  I've found that three or four quick pulses in
+the food processor works decently, and saves a lot of time.  Only use the firm cranberries, work in small batches,
+and there will still be a few that you need to chop by hand, but it still helps.
+
 ## Ingredients
 
 * 1/2 cup butter, softened
@@ -36,9 +45,3 @@ sheets.
 
 3. Bake for 10 to 12 minutes.
 
-
-## Notes
-
-The only time consuming part of this is cutting the cranberries.  If you've never used fresh cranberries
-before, they should be hard, not mushy, and totally white on the inside.  They'll become soft and deep
-red when baked.  I've also made this with frozen cranberries, its still pretty good.
