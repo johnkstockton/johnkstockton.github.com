@@ -11,7 +11,7 @@
 <!-- My Section -->
 
   <link rel="shortcut icon" href="/assets/favicon.ico" />
-  <link rel="stylesheet" href="/assets/css/styles.css" type="text/css" media="screen, projection" />
+  <link rel="stylesheet" href="/assets/css/screen.css" type="text/css" media="screen, projection" />
   <link rel="stylesheet" href="/assets/css/syntax.css" type="text/css" />
 
   <!-- JQuery Section -->
@@ -136,7 +136,7 @@
   <img src="//pixel.quantserve.com/pixel/p-51VzFsv4DQkFn.gif" border="0" height="1" width="1" alt="Quantcast"/>
   </div>
   </noscript>
-  <!-- End Quantcast tag -->u
+  <!-- End Quantcast tag -->
 
   <!-- Document Ready -->
 
@@ -154,33 +154,43 @@
 </head>
 <body>
 
-<div id="custom-header"></div>
-<div id="custom-header-underline"></div>
+<div class="container cf">
+    <header>
+      <h1><a href="/">quantifind</a></h1>
+    </header>
 
-<div id="topbar">
-  <ul id="me">
-    <li>
-      <a href="/">
-        <img src="http://www.gravatar.com/avatar/39917219070daa641abf923efaa5f4cb.png" height="32" width="32" class="avatar">
-      </a>
-    </li>
-    <li>
-      <a href="/"><span id="cwoebker">Imran Rashid</span></a>
-    </li>
-    <div id="external">
-    <li>
-      <a href="https://github.com/squito" id="github">github</a>
-    </li>
+    <div class="content">
+    {{ content }}
     </div>
-  </ul>
-</div>
 
-{{ content }}
+    <aside>
+      <div id="about-blog" class="aside-section">
+        <h5 class='section-title'>About</h5>
+        <div class="section-body">
+            Welcome to quantifind blog. We will write about our internal engineer stuff.
+        </div>
+      </div>
+      
+      <div id="hiring" class="aside-section">
+        <h5 class='section-title'>We&apos;re hiring!</h5>
+        <div class="section-body">
+            Welcome to quantifind blog. We will write about our internal engineer stuff.
+        </div>
+      </div>
+      
+      <div id="misc" class="aside-section">
+        <h5 class='section-title'>Some Misc stuff</h5>
+        <div class="section-body">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla magna ut nibh hendrerit non egestas neque auctor.
+        </div>
+      </div>
+
+    </aside>
 
 <!--<div id="sopa">
 <iframe src="http://grassroutes.us/campaigns/2/iframe" width="100%" height="100%"></iframe>
 </div>-->
-
+</div> <!-- container -->
 </body>
 </html>
 

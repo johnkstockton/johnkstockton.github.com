@@ -1,18 +1,21 @@
 ---
 layout: default
-title: "imran"
+title: "qf blog"
 ---
 
-<div class="content">
 <div class="posts">
-    <h1>Posts</h1>
-    <ul>
     {% for post in site.posts %}
-        <li>
-        <span>Posted on {{ post.date | date: "%B %e, %Y" }}</span> - <a href="{{ post.url }}">{{ post.title }}</a>
-        </li>
+        <article>
+          <header>
+              <span class='post-date'>{{ post.date | date: "%B %e, %Y" }}</span> 
+              <h3 class='post-title'>
+                <a href="{{ post.url }}">{{ post.title }}</a>
+              </h3>
+          </header>
+          <div class="body-text">
+            {{ post.content }}
+          </div>
+
+        </article>
     {% endfor %}
-    </ul>
-</div>
-<!--{% include articles.html %}-->
 </div>

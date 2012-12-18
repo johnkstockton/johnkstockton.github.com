@@ -1,16 +1,14 @@
 ---
-title: imran
+title: qfBlog
 author:
-  email: imran@therashids.com
-  github: squito
-  name: "Imran Rashid"
+  name: "qf blog"
 
 auto: false
 safe: false
 server: false
 server_port: 4000
 base-url: /
-production_url: "http://squito.github.com"
+production_url: "http://blog.quantifind.com"
 
 source: .
 destination: ./_site
