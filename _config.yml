@@ -3,9 +3,9 @@ title: qfBlog
 author:
   name: "qf blog"
 
-safe: true
+safe: false
 #source: 'git@github.com:johnkstockton/qfblog.git'
-lsi: false
+# lsi: false
 
 
 server: false
