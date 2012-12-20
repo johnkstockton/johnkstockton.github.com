@@ -2,11 +2,14 @@
 ---
 layout: post
 title: "Configuring Spark Logs"
+author: "Imran"
 ---
 
 After you run a few Spark jobs, you'll realize that Spark spits out a lot of logging messages.  At first, we found
 this too distracting, so we turned off all Spark logs.  But that was too heavy-handed -- we always wanted to see a some
 of the log messages, and of course, when we needed to debug something, we wanted everything.
+
+<!--more-->
 
 So, settled on the following configuration for log4j:
 

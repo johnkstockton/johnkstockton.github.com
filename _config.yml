@@ -11,6 +11,7 @@ base-url: /
 production_url: "http://blog.quantifind.com"
 
 source: .
+author_dir: 'author'
 destination: ./_site
 plugins: ./_plugins
 exclude:
@@ -27,11 +28,19 @@ exclude:
   - unicorn.rb
   - fabfile.py
 
+photos:
+  - 'blog-image-01.jpg'
+  - 'blog-image-02.jpg'
+  - 'blog-image-03.jpg'
+
 future: true
 lsi: false
 pygments: true
 markdown: rdiscount
 permalink: "/posts/:title"
+
+tag_page_layout: tag_page
+tag_page_dir: tag
 
 rdiscount:
   extensions:

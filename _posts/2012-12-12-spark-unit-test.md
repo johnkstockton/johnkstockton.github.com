@@ -2,11 +2,14 @@
 ---
 layout: post
 title: "Unit Testing With Spark"
+author: "Imran"
 ---
 
 One of the great things about Spark is the ability to use on just one machine in "local mode".  Not only is this useful
 for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
 to write one test using Spark, but ran into a couple of issues when we went to integrate them into test suite:
+
+<!--more-->
 
 1. *Isolation*.  If one test was broken, we didn't want it to mess up the SparkContext for other tests.  Each test
 should get its own clean SparkContext.

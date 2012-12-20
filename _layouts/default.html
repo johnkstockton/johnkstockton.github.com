@@ -45,55 +45,8 @@
   </script>
 
   {% when 'tagcanvas' %}
-  <!-- Tag Canvas Section -->
-
-  <script type="text/javascript" src="/assets/javascript/tagcanvas.js"></script>
-  <script type="text/javascript">
-    window.onload = function() {
-      try {
-        TagCanvas.interval = 80;
-        TagCanvas.textColour = '#000000';
-        TagCanvas.textHeight = 160;
-        TagCanvas.maxSpeed = 0.08;
-        TagCanvas.minBrightness = 0.1;
-        TagCanvas.outlineColour = '#f96';
-        TagCanvas.outlineThickness = 5;
-        TagCanvas.depth = 0.92;
-        TagCanvas.pulsateTo = 0.2;
-        TagCanvas.pulsateTime = 0.75;
-        TagCanvas.initial = [0.1, -0.1];
-        TagCanvas.decel = 0.98;
-        TagCanvas.reverse = true;
-        TagCanvas.hideTags = false;
-        TagCanvas.shadow = '#555555';
-        TagCanvas.shadowBlur = 3;
-        TagCanvas.weight = true;
-        TagCanvas.weightMode = 'size';
-        TagCanvas.weightSize = 16;
-        TagCanvas.weightFrom = 'tag-weight';
-        TagCanvas.Start('tags');
-      } catch(e) {
-        document.getElementById('tagsContainer').style.display = 'none';
-      }
-    };
-  </script>
   {% endcase %}
   {% endfor %}
-
-  <!-- Flattr Section -->
-
-  <script type="text/javascript">
-  /* <![CDATA[ */
-    (function() {
-        var s = document.createElement('script'), t = document.getElementsByTagName('script')[0];
-        s.type = 'text/javascript';
-        s.async = true;
-        s.src = 'http://api.flattr.com/js/0.6/load.js?mode=auto';
-        t.parentNode.insertBefore(s, t);
-    })();
-  /* ]]> */
-  </script>
-
 
   <!-- MathJax Section -->
 
@@ -111,59 +64,44 @@
             all[i].SourceElement().parentNode.className += ' has-jax';
         }
     });
+
   </script>
-
-  <!-- Quantcast Tag -->
   <script type="text/javascript">
-  var _qevents = _qevents || [];
 
-  (function() {
-  var elem = document.createElement('script');
-  elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";
-  elem.async = true;
-  elem.type = "text/javascript";
-  var scpt = document.getElementsByTagName('script')[0];
-  scpt.parentNode.insertBefore(elem, scpt);
-  })();
-
-  _qevents.push({
-  qacct:"p-51VzFsv4DQkFn"
-  });
-  </script>
-
-  <noscript>
-  <div style="display:none;">
-  <img src="//pixel.quantserve.com/pixel/p-51VzFsv4DQkFn.gif" border="0" height="1" width="1" alt="Quantcast"/>
-  </div>
-  </noscript>
-  <!-- End Quantcast tag -->
-
-  <!-- Document Ready -->
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $.localScroll.hash();
-      $.localScroll({
-        duration: 2000,
-        axis:'xy',
-        queue:true
-      });
-      {{ page.script }}
-      });
+    var photos = {{ site.photos | make_photo_list }};
+    for( var i = 0; i < photos.length; i++ ){
+      var img = new Image
+      img.src = photos[i];
+    }
+    $(function(){
+      var photo = photos[Math.round( Math.random() * ( photos.length - 1 ) )];
+      $('#b').css( 'background-image', 'url(/assets/images/stripe.png), url(' + photo + ')')
+            .css('opacity', 1)
+    });
   </script>
 </head>
 <body>
-
+<div id="b"></div>
 <div class="container cf">
-    <header>
-      <h1><a href="/">quantifind</a></h1>
+    <header id="main-header" class="cf">
+      <h1 id="identity"><a href="/"></a></h1>
+    <div id="tag-cloud">
+      <a href="/" class="home">ALL POSTS</a>
+      {{ site | tag_cloud }}
+</div>
+
     </header>
 
     <div class="content">
     {{ content }}
     </div>
 
-    <aside>
+    <footer>
+      <h5> Archive </h5>
+      {{ site.posts | asset_url }}
+    </footer>
+
+    <!--<aside>
       <div id="about-blog" class="aside-section">
         <h5 class='section-title'>About</h5>
         <div class="section-body">
@@ -185,12 +123,14 @@
         </div>
       </div>
 
-    </aside>
+    </aside>-->
 
 <!--<div id="sopa">
 <iframe src="http://grassroutes.us/campaigns/2/iframe" width="100%" height="100%"></iframe>
 </div>-->
 </div> <!-- container -->
+<script type="text/javascript" src="//use.typekit.net/aab1rap.js"></script>
+<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 </body>
 </html>
 

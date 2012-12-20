@@ -1,11 +1,11 @@
 ---
 layout: default
-title: "qf blog"
 ---
-
+<h2>{{ page.author }}</h2>
 
 <div class="posts">
     {% for post in site.posts %}
+      {% if post.author == page.author %}
         <article>
           <aside>
               <span class='post-date'>{{ post.date | date: "%B %e, %Y" }}</span> 
@@ -13,17 +13,17 @@ title: "qf blog"
 
           <section>
               <header>
-                  <h3 class='post-title'>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                  </h3>
-                  <span class="post-author">{{ post.author | author_link }}</span>
+                <h3 class='post-title'>
+                  <a href="{{ post.url }}">{{ post.title }}</a>
+                </h3>
+                <span class="post-author">{{ post.author | author_link }}</span>
               </header>
-
               <div class="body-text">
-                {{ post.content | postmorefilter: post.url, "MORE" }}
+                {{ post.content | markdownify | postmorefilter: post.url, "MORE" }}
               </div>
           </section>
 
         </article>
+        {%  endif %}
     {% endfor %}
 </div>

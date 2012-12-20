@@ -1,14 +1,91 @@
-body{
-  background: hsl(0, 0%, 99%);
-  font-family: "Helvetica Neue", "Helvetica", sans-serif;
-  font-family: "Palatino", Georgia, serif;
+body, html{
+  padding: 0;
+  margin: 0;
 }
 
+body{
+  background: hsl(0, 0%, 80%);
+  font-family: "Lucida Sans", "Helvetica", sans-serif;
+}
+
+a {
+  color: #6dbcd7;
+  text-decoration: none;
+}
+
+table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+#b{
+  position: fixed;
+  display: block;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/images/stripe.png), url(http://farm8.staticflickr.com/7184/6897514269_531eb768f4_b.jpg);
+  background-repeat: repeat, no-repeat;
+  background-size: 7px 7px, cover;
+  background-position: 0 0, fixed;
+  top: 0;
+  opacity: 0;
+  -webkit-transition: opacity .4s;
+  -moz-transition: opacity .4s;
+  transition: opacity .4s;
+}
+
+#identity{
+  margin: 0;
+}
+
+#main-header{
+  margin-bottom: 20px;
+}
+
+#identity{
+  width: 137px;
+  height: 90px;
+  float: left;
+  margin-right: 30px;
+}
+
+#identity a{
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-image: url(/assets/images/identity.png);
+  background-repeat: no-repeat;
+  background-position: 0 -11px;
+}
+
+#tag-cloud{
+  margin-top: 30px;
+  float: left;
+}
+
+#tag-cloud a{
+  font-size: 9px;
+  background-color: #44A6C1;
+  border-top: 1px solid #939598;
+  color: white;
+  padding: 2px 4px;
+  text-transform: uppercase;
+}
+
+#tag-cloud a.home{
+  border-top-color: #414042;
+  background-color: #666666;
+}
 
 .container{
   width: 100%;
-  max-width: 850px;
-  margin: 0 auto;
+  max-width: 770px;
+  background: hsla(0, 100%, 100%, 0.7);
+  border-radius: 5px;
+  padding: 15px;
+  margin: 15px;
+  padding-top: 0px;
 }
 
 
@@ -17,6 +94,14 @@ body{
   float: right;
   width: 25%;
   margin-top: 10px;
+}
+
+.container article aside{
+  display: block;
+  float: none;
+  width: 160px;
+  margin-top: 10px;
+  position: absolute;
 }
 
 .aside-section{
@@ -37,39 +122,48 @@ body{
 }
 
 .content{
-  float: left;
-  width: 70%;
-  color: hsl(0, 0%, 30%);
+  position: relative;
+  width: 100%;
 }
 
-
 .content article{
-  padding-right: 10px;
+  width: 100%;
+  padding-top: 20px;
+  padding-right: 30px;
   padding-left: 10px;
-  margin-top: 50px;
+  margin-top: 0px;
   margin-bottom: 25px;
   padding-bottom: 50px;
-  border-bottom: 1px solid hsl(0, 0%, 80%);
+  background: white;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-top: 1px solid #A7A9AC;
+}
+
+.content article section{
+  margin-left: 160px;
 }
 
 .content article pre{
-  font-size: 14px;
+  font-size: 12px;
   line-height: 1.9;
-  background: hsl(0, 0%, 95%);
+  background: #F1F2F2;
   border: 1px solid hsl(0, 0%, 80%);
   border-radius: 3px;
   padding: 10px 20px;
   overflow: scroll;
   margin-left: -20px;
-  margin-right: -20px;
   position: relative;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 .post-date{
   display: block;
-  font-family: consolas, monospace;
-  font-size: 12px;
-  color: hsl(0, 0%, 50%);
+  font-size: 11px;
+  color: #999999;
   position: relative;
 }
 
@@ -83,15 +177,25 @@ body{
   bottom: -15px;
 }
 
-
+.post-author{
+  display: inline-block;
+  margin-top: .5em;
+  font-size: 12px;
+}
+.post-author a{
+  color: #888888;
+}
 
 .post-title{
+  font-family: "proxima-nova", 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
   position: relative;
-  font-size: 32px;
+  font-size: 30px;
   margin: 0;
-  margin-top: 1em;
-  margin-bottom: 1em;
+  margin-top: 0em;
+  margin-bottom: 0em;
 }
+
 
 .post-title a{
   color: black;
@@ -99,15 +203,63 @@ body{
 }
 
 .content .body-text{
-  line-height: 1.75;
-  font-size: 18px;
-  color: hsl(0 ,0%, 30%);
+  margin-top: 1em;
+  line-height: 1.8;
+  font-size: 13px;
+  color: #666666;
 }
 
-a{
-  color: #df4b4b;
-  text-decoration: none;
+.content .body-text .more{
+  font-size: 9px;
 }
+
+.content .body-text h1,
+.content .body-text h2,
+.content .body-text h3,
+.content .body-text h4,
+.content .body-text h5{
+  font-family: "proxima-nova", 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+}
+
+.content .body-text h3{ font-size: 1.75em; }
+.content .body-text h4{ font-size: 1.5em; }
+.content .body-text h5{ font-size: 1.25em; }
+
+
+.content .body-text em{
+  color: #000;
+}
+
+.content .body-text li{
+  margin-bottom: .5em;
+}
+
+.content .body-text hr{
+  width: 80%;
+  height: 3px;
+  border: none;
+  background: hsl(0, 0%, 94%);
+  margin: 3em auto;
+  border-radius: 4px;
+  border-top: 1px solid hsl(0, 0%, 92%);
+}
+
+.content .body-text blockquote{
+  font-family: "Palatino", Georgia, serif;
+  font-style: italic;
+  font-size: 1.2em;
+  border-left: 2px solid hsl( 0, 0%, 94% );
+  padding-left: 1.5em;
+  margin-left: 1em;
+}
+
+.archive-list{
+  list-style: none;
+  padding: 0;
+  font-size: 12px;
+}
+
 /* For modern browsers */
 .cf::before,
 .cf::after{
@@ -123,3 +275,95 @@ a{
 .cf{
     zoom:1;
 }
+table:first-child th{
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border-top: none;
+	
+}
+
+table:last-child{
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	
+}
+
+table:last-child td:last-child{
+	border-bottom-right-radius: 4px;
+}
+table tr th{
+	border-bottom: 	1px solid #d1d5d8;
+	border-top: 1px solid #d1d5d8;
+	
+}
+table tr:first-child{
+	border-top:none;
+}
+table table tr th{
+	border-top: 1px solid #d1d5d8;
+}
+table tr td:first-child{
+	border-left: none;
+}
+table th{
+	height: 25px !important;
+	padding: 5px 0px 5px 6px;
+	
+	background-color: #F1F2F2;
+	font-weight: bold;
+	font-size: 12px;
+	font-weight: bold;
+	
+}
+
+table tr{
+  height: 32px;
+}
+
+/*nth childs of all tds :nth-child(2n+1)*/
+table tr td{
+	
+	border-left: 1px dotted #d9d9d9;
+	border-top: 1px dotted #d9d9d9;
+	
+}
+
+
+
+table tr td{
+	padding: 6px 5px 6px 7px;
+	vertical-align: top !important;
+	width: 306px;
+	height: 20px;	
+}
+
+
+/*icon*/
+table tr td span{
+	position: absolute;
+	width: 18px;
+	height: 18px;
+	margin-top: 2px;
+	
+}
+/*text*/		
+
+table tr td p.matrix_p{
+	/*width: 260px !important;*/
+	
+	margin: 1px 0 0 24px  ;
+	*margin:0px;
+	*display:inline-block;
+	*padding-left: 23px;
+	/*word-break: break-all;*/
+}
+
+table tr td p.affected_p{
+	margin: 0px 5px 0px 23px;
+	/*width: 250px;*/
+	font-size: 10px;
+	line-height: 15px;
+	color: #bbb;	
+}
+
+
