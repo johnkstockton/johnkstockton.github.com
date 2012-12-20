@@ -36,13 +36,17 @@ end
 
 module Jekyll
   module ArchiveFilter
-    def asset_url( posts )
+    def monthly_archive_list( posts )
       monthly = "<ul class='monthly-archive-list archive-list'>"
       monthly_list = posts.group_by{ |c| {"month" => c.date.month, "year" => c.date.year} }.map do |period, posts|
         archive_dir = File.join(period["year"].to_s(), "%02d" % period["month"].to_s())
-        "<li><a class='monthly' href='/#{archive_dir}'>#{ period['year'] } - #{ Date::MONTHNAMES[period['month']] }</a></li>"
+        "<li><a class='monthly' href='/#{archive_dir}'>#{ self.get_monthly( period ) }</a></li>"
       end
       monthly += monthly_list.join('') + '</ul>'
+    end
+    
+    def get_monthly( period )
+      "#{ period['year'] } - #{ Date::MONTHNAMES[period['month']] }"
     end
   end
 end

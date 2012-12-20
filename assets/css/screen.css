@@ -78,6 +78,23 @@ table{
   background-color: #666666;
 }
 
+.type-title{
+  font-family: "proxima-nova", 'Helvetica Neue', Helvetica, sans-serif;
+  font-weight: 300;
+  font-size: 17px;
+  background: white;
+  padding: 10px;
+  border-top: 1px solid #A7A9AC;
+  margin-bottom: 25px;
+}
+
+.type-title .type{
+  font-size: 80%;
+  color: hsl(0, 0%, 40%);
+  margin-right: 10px;
+  display: inline-block;
+}
+
 .container{
   width: 100%;
   max-width: 770px;
@@ -166,7 +183,7 @@ table{
   color: #999999;
   position: relative;
 }
-
+/*
 .post-date::after{
   content: '';
   height: 1px;
@@ -175,7 +192,7 @@ table{
   display: block;
   position: absolute;
   bottom: -15px;
-}
+}*/
 
 .post-author{
   display: inline-block;

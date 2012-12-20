@@ -6,24 +6,6 @@ title: "qf blog"
 
 <div class="posts">
     {% for post in site.posts %}
-        <article>
-          <aside>
-              <span class='post-date'>{{ post.date | date: "%B %e, %Y" }}</span> 
-          </aside>
-
-          <section>
-              <header>
-                  <h3 class='post-title'>
-                    <a href="{{ post.url }}">{{ post.title }}</a>
-                  </h3>
-                  <span class="post-author">{{ post.author | author_link }}</span>
-              </header>
-
-              <div class="body-text">
-                {{ post.content | postmorefilter: post.url, "MORE" }}
-              </div>
-          </section>
-
-        </article>
+      {% include article.html %}
     {% endfor %}
 </div>
