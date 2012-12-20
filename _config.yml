@@ -5,7 +5,6 @@ author:
 
 safe: true
 source: 'git@github.com:johnkstockton/qfblog.git'
-destination: ./_site
 lsi: false
 
 
