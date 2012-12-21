@@ -1,31 +1,407 @@
----
-layout: nil
----
 <?xml version="1.0"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
  
-  <title>{{ site.title }}</title>
-  <link href="{{ site.production_url }}"/>
-  <link type="application/atom+xml" rel="self" href="{{ site.production_url }}/atom.xml"/>
-  <updated>{{ site.time | date_to_xmlschema }}</updated>
-  <id> {{ site.production_url }} </id>
+  <title>qfBlog</title>
+  <link href="http://blog.quantifind.com"/>
+  <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
+  <updated>2012-12-20T16:00:21-08:00</updated>
+  <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
     <email>info@quantifind.com</email>
   </author>
 
-  {% for post in site.posts %}
+  
   <entry>
-    <id>{{ site.production_url }}{{ post.id }}</id>
-    <link type="text/html" rel="alternate" href="{{ site.production_url }}{{ post.url }}"/>
-    <title>{{ post.title }}</title>
-    <published>{{ post.date | date_to_xmlschema }}</published>
-    <updated>{{ post.date | date_to_xmlschema }}</updated>
+    <id>http://blog.quantifind.com/posts/sample</id>
+    <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/sample"/>
+    <title>Sample Post</title>
+    <published>2012-12-14T00:00:00-08:00</published>
+    <updated>2012-12-14T00:00:00-08:00</updated>
     <author>
-      <name>{{ post.author.name }}</name>
+      <name></name>
     </author>
-    <content type="html">{{ post.content | xml_escape }}</content>
+    <content type="html">&lt;p&gt; Lorem ipsum dolor sit amet, consectetur adipiscing elit. In fringilla magna ut nibh hendrerit non egestas neque auctor. Ut eu odio non eros aliquet sodales. Quisque tortor quam, varius nec placerat id, porta sit amet dui. Praesent ac sapien sem, id dapibus est. Cras sodales commodo egestas. Cras sodales elit at nisl mollis venenatis. Praesent lacus eros, vehicula nec scelerisque vitae, scelerisque sed metus. Sed ullamcorper vestibulum elit, at porttitor dui scelerisque a. Curabitur vel ullamcorper lacus. Cras sodales molestie urna non commodo. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque ut nibh malesuada mauris blandit viverra.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h3&gt;We all like making lists&lt;/h3&gt;
+
+&lt;p&gt;The above header should be an H2 tag. Now, for a list of fruits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Red Apples&lt;/li&gt;
+&lt;li&gt;Purple Grapes&lt;/li&gt;
+&lt;li&gt;Green Kiwifruits&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;Let&amp;rsquo;s get crazy:&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;This is a list item with two paragraphs. Lorem ipsum dolor
+sit amet, consectetuer adipiscing elit. Aliquam hendrerit
+mi posuere lectus.&lt;/p&gt;
+
+&lt;p&gt;Vestibulum enim wisi, viverra nec, fringilla in, laoreet
+vitae, risus. Donec sit amet nisl. Aliquam semper ipsum
+sit amet velit.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Suspendisse id sem consectetuer libero luctus adipiscing.&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;What about some code &lt;strong&gt;in&lt;/strong&gt; a list? That&amp;rsquo;s insane, right?&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;In Ruby you can map like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; ['a', 'b'].map { |x| x.uppercase }
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;In Rails, you can do a shortcut:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; ['a', 'b'].map(&amp;amp;:uppercase)
+&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Some people seem to like definition lists&lt;/p&gt;
+
+&lt;h3&gt;I am a robot&lt;/h3&gt;
+
+&lt;p&gt;Maybe you want to print &lt;code&gt;robot&lt;/code&gt; to the console 1000 times. Why not?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;def robot_invasion
+  puts(&quot;robot &quot; * 1000)
+end
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You see, that was formatted as code because it&amp;rsquo;s been indented by four spaces.&lt;/p&gt;
+
+&lt;p&gt;How about we throw some angle braces and ampersands in there?&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;div class=&quot;footer&quot;&amp;gt;
+    &amp;amp;copy; 2004 Foo Corporation
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3&gt;Set in stone&lt;/h3&gt;
+
+&lt;p&gt;Preformatted blocks are useful for ASCII art:&lt;/p&gt;
+
+&lt;pre&gt;
+             ,-. 
+    ,     ,-.   ,-. 
+   / \   (   )-(   ) 
+   \ |  ,.&gt;-(   )-&lt; 
+    \|,' (   )-(   ) 
+     Y ___`-'   `-' 
+     |/__/   `-' 
+     | 
+     | 
+     |    -hrr- 
+  ___|_____________ 
+&lt;/pre&gt;
+
+
+&lt;h3&gt;Horizontal Line breaks&lt;/h3&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to be broken&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;Yes you are!&lt;/p&gt;
+
+&lt;h3&gt;Playing the blame game&lt;/h3&gt;
+
+&lt;p&gt;If you need to blame someone, the best way to do so is by quoting them:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;I, at any rate, am convinced that He does not throw dice.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;Or perhaps someone a little less eloquent:&lt;/p&gt;
+
+&lt;blockquote&gt;&lt;p&gt;I wish you&amp;rsquo;d have given me this written question ahead of time so I
+could plan for it&amp;hellip; I&amp;rsquo;m sure something will pop into my head here in
+the midst of this press conference, with all the pressure of trying to
+come up with answer, but it hadn&amp;rsquo;t yet&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;I don&amp;rsquo;t want to sound like
+I have made no mistakes. I&amp;rsquo;m confident I have. I just haven&amp;rsquo;t &amp;ndash; you
+just put me under the spot here, and maybe I&amp;rsquo;m not as quick on my feet
+as I should be in coming up with one.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;h3&gt;Table for two&lt;/h3&gt;
+
+&lt;table&gt;
+  &lt;tr&gt;
+    &lt;th&gt;ID&lt;/th&gt;&lt;th&gt;Name&lt;/th&gt;&lt;th&gt;Rank&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;&lt;td&gt;Tom Preston-Werner&lt;/td&gt;&lt;td&gt;Awesome&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;2&lt;/td&gt;&lt;td&gt;Albert Einstein&lt;/td&gt;&lt;td&gt;Nearly as awesome&lt;/td&gt;
+  &lt;/tr&gt;
+
+  &lt;tr&gt;
+    &lt;td&gt;1&lt;/td&gt;&lt;td&gt;Tom Preston-Werner&lt;/td&gt;&lt;td&gt;Awesome&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;2&lt;/td&gt;&lt;td&gt;Albert Einstein&lt;/td&gt;&lt;td&gt;Nearly as awesome&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+
+&lt;h3&gt;Crazy linking action&lt;/h3&gt;
+
+&lt;p&gt;I get 10 times more traffic from &lt;a href=&quot;http://google.com/&quot; title=&quot;Google&quot;&gt;Google&lt;/a&gt; than from
+&lt;a href=&quot;http://search.yahoo.com/&quot; title=&quot;Yahoo Search&quot;&gt;Yahoo&lt;/a&gt; or &lt;a href=&quot;http://search.msn.com/&quot; title=&quot;MSN Search&quot;&gt;MSN&lt;/a&gt;.&lt;/p&gt;
+</content>
   </entry>
-  {% endfor %}
+  
+  <entry>
+    <id>http://blog.quantifind.com/posts/spark-unit-test</id>
+    <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/spark-unit-test"/>
+    <title>Unit Testing With Spark</title>
+    <published>2012-12-12T00:00:00-08:00</published>
+    <updated>2012-12-12T00:00:00-08:00</updated>
+    <author>
+      <name></name>
+    </author>
+    <content type="html">&lt;p&gt;One of the great things about Spark is the ability to use on just one machine in &amp;ldquo;local mode&amp;rdquo;.  Not only is this useful
+for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
+to write one test using Spark, but ran into a couple of issues when we went to integrate them into test suite:&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;Isolation&lt;/em&gt;.  If one test was broken, we didn&amp;rsquo;t want it to mess up the SparkContext for other tests.  Each test
+should get its own clean SparkContext.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Limited Logging&lt;/em&gt;.  The logs from Spark are great while you&amp;rsquo;re actively debugging a test.  But they are so verbose
+that they get a little annoying when you want to run your whole test suite constantly.&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;Selective Testing&lt;/em&gt;.  When I&amp;rsquo;m working with code that doesn&amp;rsquo;t interact with Spark at all, sometimes I want to skip
+the tests involving Spark so the tests run faster.  Spark is definitely fast enough to be used in unit tests, and its way
+faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with spark
+crunch through millions of records, so they take a little longer.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;Isolation is by far the most important, though the others are nice additions.  Isolation is also tricky, though.  We
+could create a SparkContext for every test, but then we ran into these error messages:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[info]   org.jboss.netty.channel.ChannelException: Failed to bind to: /192.168.1.100:63726
+[info]   at org.jboss.netty.bootstrap.ServerBootstrap.bind(ServerBootstrap.java:298)
+[info]   at akka.remote.netty.NettyRemoteServer.start(Server.scala:53)
+[info]   at akka.remote.netty.NettyRemoteTransport.start(NettyRemoteSupport.scala:89)
+[info]   at akka.remote.RemoteActorRefProvider.init(RemoteActorRefProvider.scala:94)
+[info]   at akka.actor.ActorSystemImpl._start(ActorSystem.scala:588)
+[info]   at akka.actor.ActorSystemImpl.start(ActorSystem.scala:595)
+[info]   at akka.actor.ActorSystem$.apply(ActorSystem.scala:111)
+[info]   at spark.util.AkkaUtils$.createActorSystem(AkkaUtils.scala:40)
+[info]   at spark.SparkEnv$.createFromSystemProperties(SparkEnv.scala:72)
+[info]   at spark.SparkContext.&amp;lt;init&amp;gt;(SparkContext.scala:99)
+[info]   ...
+[info]   Cause: java.net.BindException: Address already in use
+[info]   at sun.nio.ch.Net.bind(Native Method)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We found the solution to this problem in the unit tests in spark:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; // To avoid Akka rebinding to the same port, since it doesn't unbind immediately on shutdown
+ System.clearProperty(&quot;spark.master.port&quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the unit tests for Spark itself, they use BeforeAndAfter to create a SparkContext for every test.  However, that
+didn&amp;rsquo;t really work for us.  Not all of the tests in one test class needed a SparkContext, and we didn&amp;rsquo;t want to
+make one when we didn&amp;rsquo;t need it (to keep those tests fast).  We generally use &lt;a href=&quot;http://www.scalatest.org/getting_started_with_fun_suite&quot;&gt;FunSuite from ScalaTest&lt;/a&gt;
+for our tests, so we created a new &lt;code&gt;sparkTest&lt;/code&gt; method in a &lt;code&gt;SparkTestUtils&lt;/code&gt; trait that we could mix into our tests:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;object SparkTest extends org.scalatest.Tag(&quot;com.qf.test.tags.SparkTest&quot;)
+
+trait SparkTestUtils extends FunSuite {
+  var sc: SparkContext = _
+
+  /**
+   * convenience method for tests that use spark.  Creates a local spark context, and cleans
+   * it up even if your test fails.  Also marks the test with the tag SparkTest, so you can
+   * turn it off
+   *
+   * By default, it turn off spark logging, b/c it just clutters up the test output.  However,
+   * when you are actively debugging one test, you may want to turn the logs on
+   *
+   * @param name the name of the test
+   * @param silenceSpark true to turn off spark logging
+   */
+  def sparkTest(name: String, silenceSpark : Boolean = true)(body: =&amp;gt; Unit) {
+    def expBody = {
+      val origLogLevels = if (silenceSpark) SparkUtil.silenceSpark() else null
+      sc = new SparkContext(&quot;local[4]&quot;, name)
+      try {
+        body
+      }
+      finally {
+        sc.stop
+        sc = null
+        // To avoid Akka rebinding to the same port, since it doesn't unbind immediately on shutdown
+        System.clearProperty(&quot;spark.master.port&quot;)
+        if (silenceSpark) Logging.setLogLevels(origLogLevels)
+      }
+    }
+    test(name, SparkTest)(expBody)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can then use this in our tests:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class OurAwesomeClassTest extends SparkTestUtils with ShouldMatchers {
+  sparkTest(&quot;spark filter&quot;) {
+    val data = sc.parallelize(1 to 1e6.toInt)
+    data.filter{_ % 2 == 0}.count should be (5e5.toInt)
+  }
+
+  test(&quot;non-spark code&quot;) {
+    val x = 17
+    val y = 3
+    OurAwesomeClass.plus(x,y) should be (20)
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then we can run our tests within sbt:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;//running all the tests
+&amp;gt; test-only OurAwesomeClassTest
+12/11/02 10:45:43 INFO slf4j.Slf4jEventHandler: Slf4jEventHandler started
+12/11/02 10:45:44 INFO server.Server: jetty-7.5.3.v20111011
+12/11/02 10:45:44 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:63859 STARTING
+12/11/02 10:45:44 INFO server.Server: jetty-7.5.3.v20111011
+12/11/02 10:45:44 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:63860 STARTING
+[info] OurAwesomeClassTest:
+[info] - spark filter
+[info] - non-spark code
+[info] Passed: : Total 2, Failed 0, Errors 0, Passed 2, Skipped 0
+[success] Total time: 1 s, completed Nov 2, 2012 10:45:44 AM
+
+//skipping the spark tests, by using the tag
+&amp;gt; test-only OurAwesomeClassTest -- -l com.qf.test.tags.SparkTest
+[info] OurAwesomeClassTest:
+[info] - non-spark code
+[info] Passed: : Total 1, Failed 0, Errors 0, Passed 1, Skipped 0
+[success] Total time: 0 s, completed Nov 2, 2012 10:47:42 AM
+
+//if we wanted, we could also *only* run the spark tests, though we never really use this
+&amp;gt; test-only OurAwesomeClassTest -- -n com.qf.test.tags.SparkTest
+12/11/02 10:47:37 INFO slf4j.Slf4jEventHandler: Slf4jEventHandler started
+12/11/02 10:47:38 INFO server.Server: jetty-7.5.3.v20111011
+12/11/02 10:47:38 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:63945 STARTING
+12/11/02 10:47:38 INFO server.Server: jetty-7.5.3.v20111011
+12/11/02 10:47:38 INFO server.AbstractConnector: Started SelectChannelConnector@0.0.0.0:63946 STARTING
+[info] OurAwesomeClassTest:
+[info] - spark filter
+[info] Passed: : Total 1, Failed 0, Errors 0, Passed 1, Skipped 0
+[success] Total time: 1 s, completed Nov 2, 2012 10:47:38 AM
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You could modify the &lt;code&gt;sparkTest&lt;/code&gt; method to suite your needs, eg., maybe you want to pass in the number of threads spark
+should use, or if you&amp;rsquo;d prefer to have the SparkContext directly passed into the body, using the
+&lt;a href=&quot;https://wiki.scala-lang.org/display/SYGN/Loan&quot;&gt;Loan Pattern&lt;/a&gt;.  This met our needs for the moment, though, and we thought
+it would be useful for others as well.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://blog.quantifind.com/posts/logging-post</id>
+    <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/logging-post"/>
+    <title>Configuring Spark Logs</title>
+    <published>2012-12-12T00:00:00-08:00</published>
+    <updated>2012-12-12T00:00:00-08:00</updated>
+    <author>
+      <name></name>
+    </author>
+    <content type="html">&lt;p&gt;After you run a few Spark jobs, you&amp;rsquo;ll realize that Spark spits out a lot of logging messages.  At first, we found
+this too distracting, so we turned off all Spark logs.  But that was too heavy-handed &amp;mdash; we always wanted to see a some
+of the log messages, and of course, when we needed to debug something, we wanted everything.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;p&gt;So, settled on the following configuration for log4j:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# make a file appender and a console appender
+# Print the date in ISO 8601 format
+log4j.appender.myConsoleAppender=org.apache.log4j.ConsoleAppender
+log4j.appender.myConsoleAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.myConsoleAppender.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
+log4j.appender.myFileAppender=org.apache.log4j.RollingFileAppender
+log4j.appender.myFileAppender.File=spark.log
+log4j.appender.myFileAppender.layout=org.apache.log4j.PatternLayout
+log4j.appender.myFileAppender.layout.ConversionPattern=%d [%t] %-5p %c - %m%n
+
+
+
+# By default, everything goes to console and file
+log4j.rootLogger=INFO, myConsoleAppender, myFileAppender
+
+# The noisier spark logs go to file only
+log4j.logger.spark.storage=INFO, myFileAppender
+log4j.additivity.spark.storage=false
+log4j.logger.spark.scheduler=INFO, myFileAppender
+log4j.additivity.spark.scheduler=false
+log4j.logger.spark.CacheTracker=INFO, myFileAppender
+log4j.additivity.spark.CacheTracker=false
+log4j.logger.spark.CacheTrackerActor=INFO, myFileAppender
+log4j.additivity.spark.CacheTrackerActor=false
+log4j.logger.spark.MapOutputTrackerActor=INFO, myFileAppender
+log4j.additivity.spark.MapOutputTrackerActor=false
+log4j.logger.spark.MapOutputTracker=INFO, myFileAppender
+log4j.additivty.spark.MapOutputTracker=false
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This configuration file sends all the logs (from Spark and everything else) to a file.  That way we have the full logs
+when if we want to debug later on.  In addition, we log everything to the console except for a couple of spark messages
+that are a little too verbose.  But, we keep some of the logs from Spark on the console.  In particular, starting
+with &lt;a href=&quot;http://spark-project.org/release-0.6.0.html&quot;&gt;Spark 0.6&lt;/a&gt;, the logs include a message telling you when its running a
+job, and exactly where in your code it got triggered:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2012-11-01 13:00:10,647 [main] INFO  spark.SparkContext - Starting job: aggregate at MyAwesomeSourceFile.scala:86
+2012-11-01 13:00:25,169 [main] INFO  spark.SparkContext - Job finished: aggregate at MyAwesomeSourceFile.scala:86, took 14.521604475 s
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;To make use of this configuration, save it into a text file, and then in your scala code, add these lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt; import org.apache.log4j.PropertyConfigurator;
+ PropertyConfigurator.configure(propertyFile)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We should add that even though we&amp;rsquo;re sending most of the spark logs to a file, those log messages are &lt;em&gt;great&lt;/em&gt;.  There is
+all sorts of great information in there &amp;mdash; how many partitions are being used, the size of the serialized tasks, which
+nodes they are running on, progress as individual tasks finish, etc.  They are invaluable for more detailed debugging
+and optimization.  Sometimes we even watch the full logs as the job is running with &lt;code&gt;tail -f spark.log&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;There are a few log messages that only make it into the file, that we really wish we could also get in the console. Eg.,
+sub-stages of a job get logged with DAGScheduler:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;2012-10-31 13:54:00,757 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - Submitting Stage 1 (map at MyAwesomeSourceFile.scala:57), which has no missing parents
+2012-10-31 13:54:00,785 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - Submitting 52 missing tasks from Stage 1
+...
+2012-10-31 13:58:45,215 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - Stage 1 (map at MyAwesomeSourceFile.scala:57) finished; looking for newly runnable stages
+2012-10-31 13:58:45,216 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - running: Set(Stage 2)
+2012-10-31 13:58:45,217 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - waiting: Set(Stage 0)
+2012-10-31 13:58:45,217 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - failed: Set()
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, DAGScheduler emits so many more log messages, that we&amp;rsquo;d rather just have these messages in the file.  Maybe in
+the future Spark will move those messages to another class, so they&amp;rsquo;re easy to filter from the rest of the messages? :)&lt;/p&gt;
+
+&lt;p&gt;We know that there isn&amp;rsquo;t one &amp;ldquo;right way&amp;rdquo; to configure your logging, but we hope this is at least a useful starting point
+for others.  Let us know if you come up with any useful variants of this, or even if you decide on a completely different
+setup.&lt;/p&gt;
+</content>
+  </entry>
+  
  
 </feed>
