@@ -31,4 +31,4 @@ git checkout source
 clear
 echo ''
 echo  "\t\033[0;36m ⚐  \033[1;36mSweetness\033[0;36m\033[0m"
-echo '  '
+open http://johnkstockton.github.com
