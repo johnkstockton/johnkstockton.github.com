@@ -28,8 +28,6 @@ git add -A
 git commit -m 'update'
 git push origin master
 
-clear
-
 echo '  '
 echo '  '
 echo '  '
@@ -42,3 +40,8 @@ echo '  '
 echo '  '
 
 git checkout source
+
+clear
+echo ''
+echo  "\033[0;36m ♔ Sweetness ♔ \033[0m"
+echo '  '
