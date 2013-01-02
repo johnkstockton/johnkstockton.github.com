@@ -5,6 +5,8 @@ git add -A
 git commit
 git push origin source
 
+clear
+
 echo '  '
 echo '  '
 echo '  '
@@ -25,6 +27,8 @@ rm -r _site
 git add -A
 git commit 'update'
 git push origin master
+
+clear
 
 echo '  '
 echo '  '
