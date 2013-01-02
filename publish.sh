@@ -2,13 +2,7 @@
 clear
 
 echo '  '
-echo '  '
-echo '  '
-echo '  '
 echo  "\033[0;36mPushing source to github\033[0m"
-echo '  '
-echo '  '
-echo '  '
 echo '  '
 
 # Push source branch
@@ -28,15 +22,8 @@ git add -A
 git commit -m 'update'
 git push origin master
 
-echo '  '
-echo '  '
-echo '  '
-echo '  '
 echo ''
 echo  "\033[0;36mPublished successfully. Moving back to source branch...\033[0m"
-echo '  '
-echo '  '
-echo '  '
 echo '  '
 
 git checkout source
