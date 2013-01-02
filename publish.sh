@@ -9,7 +9,7 @@ echo '  '
 echo '  '
 echo '  '
 echo '  '
-echo 'Pushing the source to github'
+echo  "\033[0;36mPushing source to github\033[0m"
 echo '  '
 echo '  '
 echo '  '
