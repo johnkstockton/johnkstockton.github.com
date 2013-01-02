@@ -35,9 +35,10 @@ echo '  '
 echo '  '
 echo '  '
 echo ''
-echo  "\033[0;36mPublished successfully.\033[0m"
+echo  "\033[0;36mPublished successfully. Moving back to source branch...\033[0m"
 echo '  '
 echo '  '
 echo '  '
 echo '  '
 
+git checkout source
