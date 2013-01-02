@@ -25,7 +25,7 @@ git rm -qr .
 cp -r _site/. .
 rm -r _site
 git add -A
-git commit 'update'
+git commit -m 'update'
 git push origin master
 
 clear
@@ -34,7 +34,8 @@ echo '  '
 echo '  '
 echo '  '
 echo '  '
-echo 'Published successfully.'
+echo ''
+echo  "\033[0;36mPublished successfully.\033[0m"
 echo '  '
 echo '  '
 echo '  '
