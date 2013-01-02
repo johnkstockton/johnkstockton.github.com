@@ -5,6 +5,8 @@ git add -A
 git commit
 git push origin source
 
+echo 'Pushing the source to github'
+
 # Push master branch
 jekyll
 git checkout master
@@ -14,3 +16,8 @@ rm -r _site
 git add -A
 git commit 'update'
 git push origin master
+
+echo 'Published successfully.'
+
+# And get back to source
+git checkout source
