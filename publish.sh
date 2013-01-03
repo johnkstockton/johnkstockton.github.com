@@ -18,6 +18,7 @@ git checkout master
 git rm -qr .
 cp -r _site/. .
 rm -r _site
+echo 'blog.quantifind.com' >> CNAME
 git add -A
 git commit -m 'update'
 git push origin master
