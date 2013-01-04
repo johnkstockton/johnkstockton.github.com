@@ -98,7 +98,7 @@ table{
 
 .container{
   width: 100%;
-  max-width: 770px;
+  max-width: 900px;
   background: hsla(0, 100%, 100%, 0.7);
   border-radius: 5px;
   padding: 15px;
@@ -147,7 +147,7 @@ table{
 .content article{
   width: 100%;
   padding-top: 20px;
-  padding-right: 30px;
+  padding-right: 20px;
   padding-left: 10px;
   margin-top: 0px;
   margin-bottom: 25px;
@@ -163,9 +163,10 @@ table{
   margin-left: 160px;
 }
 
-.content article pre{
-  font-size: 12px;
-  line-height: 1.9;
+.content article .body-text pre{
+  max-width: none;
+  font-size: 11px;
+  line-height: 1.75;
   background: #F1F2F2;
   /* border: 1px solid hsl(0, 0%, 80%); */
   border-radius: 3px;
@@ -175,7 +176,7 @@ table{
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font-size: Courier New, "Consolas", monospace;
+  font-size: "Courier New", "Consolas", monospace;
 }
 
 .post-date{
@@ -247,6 +248,11 @@ table{
 .content .body-text h3{ font-size: 1.75em; }
 .content .body-text h4{ font-size: 1.5em; }
 .content .body-text h5{ font-size: 1.25em; }*/
+
+.content .body-text *{
+  width: 100%;
+  max-width: 570px;
+}
 
 
 .content .body-text em{
