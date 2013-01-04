@@ -6,33 +6,19 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Fri, 04 Jan 2013 10:23:26 -0800</pubDate>
-    <lastBuildDate>Fri, 04 Jan 2013 10:23:26 -0800</lastBuildDate>
+    <pubDate>Fri, 04 Jan 2013 12:41:23 -0800</pubDate>
+    <lastBuildDate>Fri, 04 Jan 2013 12:41:23 -0800</lastBuildDate>
 
-    
-    <item>
-      <title>Welcome to our tech blog</title>
-      <link>http://blog.quantifind.com/posts/welcome</link>
-      <pubDate>Thu, 03 Jan 2013 00:00:00 -0800</pubDate>
-      <author></author>
-      <guid>http://blog.quantifind.com/posts/welcome</guid>
-      <description>&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;
-
-&lt;p&gt;Some of these things we can share and some we can&amp;rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.&lt;/p&gt;
-
-&lt;p&gt;Part of our aim here is purely self-interested: to attract talented engineers.  If you&amp;rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.&lt;/p&gt;
-</description>
-    </item>
     
     <item>
       <title>Unit Testing With Spark</title>
       <link>http://blog.quantifind.com/posts/spark-unit-test</link>
-      <pubDate>Wed, 12 Dec 2012 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 -0800</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/spark-unit-test</guid>
-      <description>&lt;p&gt;One of the great things about Spark is the ability to use on just one machine in &amp;ldquo;local mode&amp;rdquo;.  Not only is this useful
+      <description>&lt;p&gt;One of the great things about Spark is the ability to use it on just one machine in &amp;ldquo;local mode&amp;rdquo;.  Not only is this useful
 for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
-to write one test using Spark, but ran into a couple of issues when we went to integrate them into test suite:&lt;/p&gt;
+to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:&lt;/p&gt;
 
 &lt;!--more--&gt;
 
@@ -176,7 +162,7 @@ it would be useful for others as well.&lt;/p&gt;
     <item>
       <title>Configuring Spark Logs</title>
       <link>http://blog.quantifind.com/posts/logging-post</link>
-      <pubDate>Wed, 12 Dec 2012 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 -0800</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/logging-post</guid>
       <description>&lt;p&gt;After you run a few Spark jobs, you&amp;rsquo;ll realize that Spark spits out a lot of logging messages.  At first, we found
@@ -186,7 +172,7 @@ of the log messages, and of course, when we needed to debug something, we wanted
 &lt;!--more--&gt;
 
 
-&lt;p&gt;So, settled on the following configuration for log4j:&lt;/p&gt;
+&lt;p&gt;So, we settled on the following configuration for log4j:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;# make a file appender and a console appender
 # Print the date in ISO 8601 format
@@ -219,7 +205,7 @@ log4j.additivty.spark.MapOutputTracker=false
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;This configuration file sends all the logs (from Spark and everything else) to a file.  That way we have the full logs
-when if we want to debug later on.  In addition, we log everything to the console except for a couple of spark messages
+if we need to debug later on.  In addition, we log everything to the console except for some spark messages
 that are a little too verbose.  But, we keep some of the logs from Spark on the console.  In particular, starting
 with &lt;a href=&quot;http://spark-project.org/release-0.6.0.html&quot;&gt;Spark 0.6&lt;/a&gt;, the logs include a message telling you when its running a
 job, and exactly where in your code it got triggered:&lt;/p&gt;
@@ -228,7 +214,9 @@ job, and exactly where in your code it got triggered:&lt;/p&gt;
 2012-11-01 13:00:25,169 [main] INFO  spark.SparkContext - Job finished: aggregate at MyAwesomeSourceFile.scala:86, took 14.521604475 s
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;To make use of this configuration, save it into a text file, and then in your scala code, add these lines:&lt;/p&gt;
+&lt;p&gt;To make use of this configuration, first save it into a text file. Then if you add it to your classpath, it will automatically get picked up.
+In particular, with Spark you can just drop it in the &amp;ldquo;conf&amp;rdquo; directory, as that is already on the classpath by default.  Or, you can configure
+it via code with:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; import org.apache.log4j.PropertyConfigurator;
  PropertyConfigurator.configure(propertyFile)
@@ -257,6 +245,20 @@ the future Spark will move those messages to another class, so they&amp;rsquo;re
 &lt;p&gt;We know that there isn&amp;rsquo;t one &amp;ldquo;right way&amp;rdquo; to configure your logging, but we hope this is at least a useful starting point
 for others.  Let us know if you come up with any useful variants of this, or even if you decide on a completely different
 setup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Welcome to our tech blog</title>
+      <link>http://blog.quantifind.com/posts/welcome</link>
+      <pubDate>Thu, 03 Jan 2013 00:00:00 -0800</pubDate>
+      <author></author>
+      <guid>http://blog.quantifind.com/posts/welcome</guid>
+      <description>&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;
+
+&lt;p&gt;Some of these things we can share and some we can&amp;rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.&lt;/p&gt;
+
+&lt;p&gt;Part of our aim here is purely self-interested: to attract talented engineers.  If you&amp;rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.&lt;/p&gt;
 </description>
     </item>
     
