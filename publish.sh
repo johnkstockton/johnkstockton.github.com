@@ -21,7 +21,7 @@ rm -r _site
 echo 'blog.quantifind.com' >> CNAME
 git add -A
 git commit -m 'update'
-git push origin master
+git push origin master --force
 
 echo ''
 echo  "\033[0;36mPublished successfully. Moving back to source branch...\033[0m"

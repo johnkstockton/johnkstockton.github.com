@@ -4,11 +4,7 @@
   <title>qfBlog</title>
   <link href="http://blog.quantifind.com"/>
   <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
-<<<<<<< HEAD
-  <updated>2013-01-04T14:58:59-08:00</updated>
-=======
-  <updated>2013-01-04T12:41:23-08:00</updated>
->>>>>>> e922bdae85f451e875c53ad31526fbe3958dc487
+  <updated>2013-01-04T15:05:00-08:00</updated>
   <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
