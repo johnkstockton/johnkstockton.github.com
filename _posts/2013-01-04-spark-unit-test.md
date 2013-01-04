@@ -3,11 +3,13 @@
 layout: post
 title: "Unit Testing With Spark"
 author: "Imran"
+tags:
+  - Spark
 ---
 
-One of the great things about Spark is the ability to use on just one machine in "local mode".  Not only is this useful
+One of the great things about Spark is the ability to use it on just one machine in "local mode".  Not only is this useful
 for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
-to write one test using Spark, but ran into a couple of issues when we went to integrate them into test suite:
+to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:
 
 <!--more-->
 
