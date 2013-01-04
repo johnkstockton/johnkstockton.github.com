@@ -4,7 +4,7 @@
   <title>qfBlog</title>
   <link href="http://blog.quantifind.com"/>
   <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
-  <updated>2013-01-03T12:21:53-08:00</updated>
+  <updated>2013-01-04T09:38:57-08:00</updated>
   <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
@@ -251,6 +251,23 @@ the future Spark will move those messages to another class, so they&amp;rsquo;re
 &lt;p&gt;We know that there isn&amp;rsquo;t one &amp;ldquo;right way&amp;rdquo; to configure your logging, but we hope this is at least a useful starting point
 for others.  Let us know if you come up with any useful variants of this, or even if you decide on a completely different
 setup.&lt;/p&gt;
+</content>
+  </entry>
+  
+  <entry>
+    <id>http://blog.quantifind.com/posts/welcome</id>
+    <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/welcome"/>
+    <title>Welcome to the our tech blog</title>
+    <published>2012-12-11T00:00:00-08:00</published>
+    <updated>2012-12-11T00:00:00-08:00</updated>
+    <author>
+      <name></name>
+    </author>
+    <content type="html">&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;
+
+&lt;p&gt;Some of these things we can share and some we can&amp;rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.&lt;/p&gt;
+
+&lt;p&gt;Part of our aim here is purely self-interested: to attract talented engineers.  If you&amp;rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.&lt;/p&gt;
 </content>
   </entry>
   
