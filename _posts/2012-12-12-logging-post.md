@@ -3,6 +3,8 @@
 layout: post
 title: "Configuring Spark Logs"
 author: "Imran"
+tags:
+  - Spark
 ---
 
 After you run a few Spark jobs, you'll realize that Spark spits out a lot of logging messages.  At first, we found
@@ -11,7 +13,7 @@ of the log messages, and of course, when we needed to debug something, we wanted
 
 <!--more-->
 
-So, settled on the following configuration for log4j:
+So, we settled on the following configuration for log4j:
 
     # make a file appender and a console appender
     # Print the date in ISO 8601 format
@@ -44,7 +46,7 @@ So, settled on the following configuration for log4j:
 
 
 This configuration file sends all the logs (from Spark and everything else) to a file.  That way we have the full logs
-when if we want to debug later on.  In addition, we log everything to the console except for a couple of spark messages
+if we need to debug later on.  In addition, we log everything to the console except for some spark messages
 that are a little too verbose.  But, we keep some of the logs from Spark on the console.  In particular, starting
 with [Spark 0.6](http://spark-project.org/release-0.6.0.html), the logs include a message telling you when its running a
 job, and exactly where in your code it got triggered:
@@ -52,7 +54,9 @@ job, and exactly where in your code it got triggered:
     2012-11-01 13:00:10,647 [main] INFO  spark.SparkContext - Starting job: aggregate at MyAwesomeSourceFile.scala:86
     2012-11-01 13:00:25,169 [main] INFO  spark.SparkContext - Job finished: aggregate at MyAwesomeSourceFile.scala:86, took 14.521604475 s
 
-To make use of this configuration, save it into a text file, and then in your scala code, add these lines:
+To make use of this configuration, first save it into a text file. Then if you add it to your classpath, it will automatically get picked up.
+In particular, with Spark you can just drop it in the "conf" directory, as that is already on the classpath by default.  Or, you can configure
+it via code with:
 
      import org.apache.log4j.PropertyConfigurator;
      PropertyConfigurator.configure(propertyFile)
