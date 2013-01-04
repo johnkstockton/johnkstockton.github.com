@@ -252,6 +252,9 @@ table{
 .content .body-text *{
   width: 100%;
   max-width: 570px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 
