@@ -6,9 +6,23 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Fri, 04 Jan 2013 09:38:57 -0800</pubDate>
-    <lastBuildDate>Fri, 04 Jan 2013 09:38:57 -0800</lastBuildDate>
+    <pubDate>Fri, 04 Jan 2013 10:23:26 -0800</pubDate>
+    <lastBuildDate>Fri, 04 Jan 2013 10:23:26 -0800</lastBuildDate>
 
+    
+    <item>
+      <title>Welcome to our tech blog</title>
+      <link>http://blog.quantifind.com/posts/welcome</link>
+      <pubDate>Thu, 03 Jan 2013 00:00:00 -0800</pubDate>
+      <author></author>
+      <guid>http://blog.quantifind.com/posts/welcome</guid>
+      <description>&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;
+
+&lt;p&gt;Some of these things we can share and some we can&amp;rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.&lt;/p&gt;
+
+&lt;p&gt;Part of our aim here is purely self-interested: to attract talented engineers.  If you&amp;rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Unit Testing With Spark</title>
@@ -243,20 +257,6 @@ the future Spark will move those messages to another class, so they&amp;rsquo;re
 &lt;p&gt;We know that there isn&amp;rsquo;t one &amp;ldquo;right way&amp;rdquo; to configure your logging, but we hope this is at least a useful starting point
 for others.  Let us know if you come up with any useful variants of this, or even if you decide on a completely different
 setup.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Welcome to the our tech blog</title>
-      <link>http://blog.quantifind.com/posts/welcome</link>
-      <pubDate>Tue, 11 Dec 2012 00:00:00 -0800</pubDate>
-      <author></author>
-      <guid>http://blog.quantifind.com/posts/welcome</guid>
-      <description>&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;
-
-&lt;p&gt;Some of these things we can share and some we can&amp;rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.&lt;/p&gt;
-
-&lt;p&gt;Part of our aim here is purely self-interested: to attract talented engineers.  If you&amp;rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.&lt;/p&gt;
 </description>
     </item>
     
