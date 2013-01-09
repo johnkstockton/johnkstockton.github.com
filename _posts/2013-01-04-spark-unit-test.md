@@ -7,8 +7,8 @@ tags:
   - Spark
 ---
 
-One of the great things about Spark is the ability to use it on just one machine in "local mode".  Not only is this useful
-for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
+One of the great things about Spark is the ability to use it on just one machine in "local mode."  Not only is this useful
+for trying out Spark before setting up a cluster, it makes it easy to use Spark in your unit tests.  It was easy enough
 to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:
 
 <!--more-->
@@ -19,7 +19,7 @@ should get its own clean SparkContext.
 that they get a little annoying when you want to run your whole test suite constantly.
 3. *Selective Testing*.  When I'm working with code that doesn't interact with Spark at all, sometimes I want to skip
 the tests involving Spark so the tests run faster.  Spark is definitely fast enough to be used in unit tests, and its way
-faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with spark
+faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with Spark
 crunch through millions of records, so they take a little longer.
 
 Isolation is by far the most important, though the others are nice additions.  Isolation is also tricky, though.  We
@@ -40,7 +40,7 @@ could create a SparkContext for every test, but then we ran into these error mes
     [info]   Cause: java.net.BindException: Address already in use
     [info]   at sun.nio.ch.Net.bind(Native Method)
 
-We found the solution to this problem in the unit tests in spark:
+We found the solution to this problem in the unit tests in Spark:
 
      // To avoid Akka rebinding to the same port, since it doesn't unbind immediately on shutdown
      System.clearProperty("spark.master.port")
@@ -136,7 +136,7 @@ Then we can run our tests within sbt:
     [info] Passed: : Total 1, Failed 0, Errors 0, Passed 1, Skipped 0
     [success] Total time: 1 s, completed Nov 2, 2012 10:47:38 AM
 
-You could modify the `sparkTest` method to suite your needs, eg., maybe you want to pass in the number of threads spark
+You could modify the `sparkTest` method to suit your needs, e.g., maybe you want to pass in the number of threads Spark
 should use, or if you'd prefer to have the SparkContext directly passed into the body, using the
 [Loan Pattern](https://wiki.scala-lang.org/display/SYGN/Loan).  This met our needs for the moment, though, and we thought
 it would be useful for others as well.
