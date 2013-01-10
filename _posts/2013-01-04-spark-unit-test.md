@@ -67,7 +67,7 @@ for our tests, so we created a new `sparkTest` method in a `SparkTestUtils` trai
        * @param silenceSpark true to turn off spark logging
        */
       def sparkTest(name: String, silenceSpark : Boolean = true)(body: => Unit) {
-        def expBody = {
+        test(name, SparkTest){
           val origLogLevels = if (silenceSpark) SparkUtil.silenceSpark() else null
           sc = new SparkContext("local[4]", name)
           try {
@@ -81,7 +81,6 @@ for our tests, so we created a new `sparkTest` method in a `SparkTestUtils` trai
             if (silenceSpark) Logging.setLogLevels(origLogLevels)
           }
         }
-        test(name, SparkTest)(expBody)
       }
     }
 
