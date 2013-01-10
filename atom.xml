@@ -4,7 +4,7 @@
   <title>qfBlog</title>
   <link href="http://blog.quantifind.com"/>
   <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
-  <updated>2013-01-04T15:07:19-08:00</updated>
+  <updated>2013-01-10T15:30:07-08:00</updated>
   <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
@@ -21,8 +21,8 @@
     <author>
       <name></name>
     </author>
-    <content type="html">&lt;p&gt;One of the great things about Spark is the ability to use it on just one machine in &amp;ldquo;local mode&amp;rdquo;.  Not only is this useful
-for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
+    <content type="html">&lt;p&gt;One of the great things about Spark is the ability to use it on just one machine in &amp;ldquo;local mode.&amp;rdquo;  Not only is this useful
+for trying out Spark before setting up a cluster, it makes it easy to use Spark in your unit tests.  It was easy enough
 to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:&lt;/p&gt;
 
 &lt;!--more--&gt;
@@ -35,7 +35,7 @@ should get its own clean SparkContext.&lt;/li&gt;
 that they get a little annoying when you want to run your whole test suite constantly.&lt;/li&gt;
 &lt;li&gt;&lt;em&gt;Selective Testing&lt;/em&gt;.  When I&amp;rsquo;m working with code that doesn&amp;rsquo;t interact with Spark at all, sometimes I want to skip
 the tests involving Spark so the tests run faster.  Spark is definitely fast enough to be used in unit tests, and its way
-faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with spark
+faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with Spark
 crunch through millions of records, so they take a little longer.&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -59,7 +59,7 @@ could create a SparkContext for every test, but then we ran into these error mes
 [info]   at sun.nio.ch.Net.bind(Native Method)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We found the solution to this problem in the unit tests in spark:&lt;/p&gt;
+&lt;p&gt;We found the solution to this problem in the unit tests in Spark:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; // To avoid Akka rebinding to the same port, since it doesn't unbind immediately on shutdown
  System.clearProperty(&quot;spark.master.port&quot;)
@@ -87,7 +87,7 @@ trait SparkTestUtils extends FunSuite {
    * @param silenceSpark true to turn off spark logging
    */
   def sparkTest(name: String, silenceSpark : Boolean = true)(body: =&amp;gt; Unit) {
-    def expBody = {
+    test(name, SparkTest){
       val origLogLevels = if (silenceSpark) SparkUtil.silenceSpark() else null
       sc = new SparkContext(&quot;local[4]&quot;, name)
       try {
@@ -101,7 +101,6 @@ trait SparkTestUtils extends FunSuite {
         if (silenceSpark) Logging.setLogLevels(origLogLevels)
       }
     }
-    test(name, SparkTest)(expBody)
   }
 }
 &lt;/code&gt;&lt;/pre&gt;
@@ -157,7 +156,7 @@ trait SparkTestUtils extends FunSuite {
 [success] Total time: 1 s, completed Nov 2, 2012 10:47:38 AM
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;You could modify the &lt;code&gt;sparkTest&lt;/code&gt; method to suite your needs, eg., maybe you want to pass in the number of threads spark
+&lt;p&gt;You could modify the &lt;code&gt;sparkTest&lt;/code&gt; method to suit your needs, e.g., maybe you want to pass in the number of threads Spark
 should use, or if you&amp;rsquo;d prefer to have the SparkContext directly passed into the body, using the
 &lt;a href=&quot;https://wiki.scala-lang.org/display/SYGN/Loan&quot;&gt;Loan Pattern&lt;/a&gt;.  This met our needs for the moment, though, and we thought
 it would be useful for others as well.&lt;/p&gt;
@@ -174,7 +173,7 @@ it would be useful for others as well.&lt;/p&gt;
       <name></name>
     </author>
     <content type="html">&lt;p&gt;After you run a few Spark jobs, you&amp;rsquo;ll realize that Spark spits out a lot of logging messages.  At first, we found
-this too distracting, so we turned off all Spark logs.  But that was too heavy-handed &amp;mdash; we always wanted to see a some
+this too distracting, so we turned off all Spark logs.  But that was too heavy-handed &amp;mdash; we always wanted to see &lt;em&gt;some&lt;/em&gt;
 of the log messages, and of course, when we needed to debug something, we wanted everything.&lt;/p&gt;
 
 &lt;!--more--&gt;
@@ -212,8 +211,8 @@ log4j.logger.spark.MapOutputTracker=INFO, myFileAppender
 log4j.additivty.spark.MapOutputTracker=false
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;This configuration file sends all the logs (from Spark and everything else) to a file.  That way we have the full logs
-if we need to debug later on.  In addition, we log everything to the console except for some spark messages
+&lt;p&gt;This configuration file sends all the logs (from Spark and everything else) to a logfile, &lt;code&gt;spark.log&lt;/code&gt;.  That way we have the full logs
+if we need to debug later on.  In addition, we log everything to the console except for some Spark messages
 that are a little too verbose.  But, we keep some of the logs from Spark on the console.  In particular, starting
 with &lt;a href=&quot;http://spark-project.org/release-0.6.0.html&quot;&gt;Spark 0.6&lt;/a&gt;, the logs include a message telling you when its running a
 job, and exactly where in your code it got triggered:&lt;/p&gt;
@@ -223,19 +222,19 @@ job, and exactly where in your code it got triggered:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;To make use of this configuration, first save it into a text file. Then if you add it to your classpath, it will automatically get picked up.
-In particular, with Spark you can just drop it in the &amp;ldquo;conf&amp;rdquo; directory, as that is already on the classpath by default.  Or, you can configure
+In particular, with Spark you can just drop it in the &lt;code&gt;conf&lt;/code&gt; directory, as that is already on the classpath by default.  Or, you can configure
 it via code with:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt; import org.apache.log4j.PropertyConfigurator;
  PropertyConfigurator.configure(propertyFile)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;We should add that even though we&amp;rsquo;re sending most of the spark logs to a file, those log messages are &lt;em&gt;great&lt;/em&gt;.  There is
+&lt;p&gt;We should add that even though we&amp;rsquo;re sending most of the Spark logs to a logfile, those log messages are &lt;em&gt;great&lt;/em&gt;.  There are
 all sorts of great information in there &amp;mdash; how many partitions are being used, the size of the serialized tasks, which
 nodes they are running on, progress as individual tasks finish, etc.  They are invaluable for more detailed debugging
 and optimization.  Sometimes we even watch the full logs as the job is running with &lt;code&gt;tail -f spark.log&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;There are a few log messages that only make it into the file, that we really wish we could also get in the console. Eg.,
+&lt;p&gt;There are a few log messages that only make it into the logfile, that we really wish we could also get in the console. For example,
 sub-stages of a job get logged with DAGScheduler:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;2012-10-31 13:54:00,757 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - Submitting Stage 1 (map at MyAwesomeSourceFile.scala:57), which has no missing parents
@@ -247,7 +246,7 @@ sub-stages of a job get logged with DAGScheduler:&lt;/p&gt;
 2012-10-31 13:58:45,217 [DAGScheduler] INFO  spark.scheduler.DAGScheduler - failed: Set()
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;However, DAGScheduler emits so many more log messages, that we&amp;rsquo;d rather just have these messages in the file.  Maybe in
+&lt;p&gt;However, DAGScheduler emits so many more log messages, that we&amp;rsquo;d rather just have these messages in the logfile.  Maybe in
 the future Spark will move those messages to another class, so they&amp;rsquo;re easy to filter from the rest of the messages? :)&lt;/p&gt;
 
 &lt;p&gt;We know that there isn&amp;rsquo;t one &amp;ldquo;right way&amp;rdquo; to configure your logging, but we hope this is at least a useful starting point

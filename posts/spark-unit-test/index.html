@@ -79,8 +79,8 @@
             <span class="post-author"><a class='author' href='/author/imran/'>Imran</a></span>
         </header>
         <div class="body-text">
-          <p>One of the great things about Spark is the ability to use it on just one machine in &ldquo;local mode&rdquo;.  Not only is this useful
-for trying out spark before setting up a cluster, it makes it easy to use spark in your unit tests.  It was easy enough
+          <p>One of the great things about Spark is the ability to use it on just one machine in &ldquo;local mode.&rdquo;  Not only is this useful
+for trying out Spark before setting up a cluster, it makes it easy to use Spark in your unit tests.  It was easy enough
 to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:</p>
 
 <!--more-->
@@ -93,7 +93,7 @@ should get its own clean SparkContext.</li>
 that they get a little annoying when you want to run your whole test suite constantly.</li>
 <li><em>Selective Testing</em>.  When I&rsquo;m working with code that doesn&rsquo;t interact with Spark at all, sometimes I want to skip
 the tests involving Spark so the tests run faster.  Spark is definitely fast enough to be used in unit tests, and its way
-faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with spark
+faster than Hadoop, but they do take a little longer than our other unit tests.  And some of our unit tests with Spark
 crunch through millions of records, so they take a little longer.</li>
 </ol>
 
@@ -117,7 +117,7 @@ could create a SparkContext for every test, but then we ran into these error mes
 [info]   at sun.nio.ch.Net.bind(Native Method)
 </code></pre>
 
-<p>We found the solution to this problem in the unit tests in spark:</p>
+<p>We found the solution to this problem in the unit tests in Spark:</p>
 
 <pre><code> // To avoid Akka rebinding to the same port, since it doesn't unbind immediately on shutdown
  System.clearProperty("spark.master.port")
@@ -145,7 +145,7 @@ trait SparkTestUtils extends FunSuite {
    * @param silenceSpark true to turn off spark logging
    */
   def sparkTest(name: String, silenceSpark : Boolean = true)(body: =&gt; Unit) {
-    def expBody = {
+    test(name, SparkTest){
       val origLogLevels = if (silenceSpark) SparkUtil.silenceSpark() else null
       sc = new SparkContext("local[4]", name)
       try {
@@ -159,7 +159,6 @@ trait SparkTestUtils extends FunSuite {
         if (silenceSpark) Logging.setLogLevels(origLogLevels)
       }
     }
-    test(name, SparkTest)(expBody)
   }
 }
 </code></pre>
@@ -215,7 +214,7 @@ trait SparkTestUtils extends FunSuite {
 [success] Total time: 1 s, completed Nov 2, 2012 10:47:38 AM
 </code></pre>
 
-<p>You could modify the <code>sparkTest</code> method to suite your needs, eg., maybe you want to pass in the number of threads spark
+<p>You could modify the <code>sparkTest</code> method to suit your needs, e.g., maybe you want to pass in the number of threads Spark
 should use, or if you&rsquo;d prefer to have the SparkContext directly passed into the body, using the
 <a href="https://wiki.scala-lang.org/display/SYGN/Loan">Loan Pattern</a>.  This met our needs for the moment, though, and we thought
 it would be useful for others as well.</p>
