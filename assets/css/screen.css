@@ -172,6 +172,7 @@ table{
   border-radius: 3px;
   padding: 5px 10px;
   overflow: scroll;
+  overflow-y: hidden;
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -237,8 +238,6 @@ table{
 .content .body-text h3,
 .content .body-text h4,
 .content .body-text h5{
-  /*font-family: "proxima-nova", 'Helvetica Neue', Helvetica, sans-serif;
-  font-weight: 300;*/
   color: black;
   font-weight: bold;
   margin: 0;
