@@ -6,8 +6,8 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Mon, 13 May 2013 10:50:24 -0700</pubDate>
-    <lastBuildDate>Mon, 13 May 2013 10:50:24 -0700</lastBuildDate>
+    <pubDate>Mon, 13 May 2013 11:44:12 -0700</pubDate>
+    <lastBuildDate>Mon, 13 May 2013 11:44:12 -0700</lastBuildDate>
 
     
     <item>
@@ -17,8 +17,13 @@
       <author></author>
       <guid>http://blog.quantifind.com/posts/Sumac</guid>
       <description>&lt;p&gt;We&amp;rsquo;re proud to announce the release of &lt;strong&gt;&lt;a href=&quot;https://github.com/quantifind/Sumac&quot;&gt;Sumac&lt;/a&gt;&lt;/strong&gt;, our first open source library.
-Sumac is a simple, lighweight library for parsing command line arguments in Scala.  It is available for download on
-Sonatype; to use, add this to your sbt definitions:&lt;/p&gt;
+Sumac is a simple, lighweight library for parsing command line arguments in Scala.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+
+&lt;p&gt;It is available for
+download on Sonatype; to use, add this to your sbt definitions:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;&quot;com.quantifind&quot; % &quot;sumac_2.9.3&quot; % &quot;0.1&quot;
 &lt;/code&gt;&lt;/pre&gt;
