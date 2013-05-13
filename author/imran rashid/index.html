@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
 <head>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <title>qf blog</title>
+  <title>Imran Rashid</title>
   <meta name="author" content="imran" />
   <meta name="description" content="imran's blog" />
 
@@ -65,9 +65,12 @@
     </header>
 
     <div class="content">
-    <div class="posts">
+    <h2 class="type-title"><span class='type'>Author:</span> Imran Rashid</h2>
+
+<div class="posts">
     
-      <article>
+      
+        <article>
   <aside>
       <span class='post-date'>May 13, 2013</span> 
   </aside>
@@ -84,38 +87,20 @@
 Sumac is a simple, lighweight library for parsing command line arguments in Scala.  It is available for download on
 Sonatype; to use, add this to your sbt definitions:</p>
 
-
-
-
 <pre><code>"com.quantifind" % "sumac_2.9.3" % "0.1"
 </code></pre>
 
-
-
-
 <h2>Another Argument Parsing Library?</h2>
-
-
-
 
 <p>We know, there are already lots of argument parsing libaries out there, even scala specific ones.  Does the world really
 need yet another one?</p>
 
-
-
-
 <p>Yes, it does.  Most libraries require ludicrous amounts of configuration to define even the simplest set of arguments.
 Sumac gets rid of all the boilerplate.</p>
-
-
-
 
 <p>As an example, say you want to write a program that prints out all integers in a range along with their squares.  So you need
 two arguments, &ldquo;from&rdquo; and &ldquo;to&rdquo;, both integers.  With Sumac, just make a class that extends <code>FieldArgs</code> with appropriately
 named and typed fields.</p>
-
-
-
 
 <pre><code>import com.quantifind.sumac.FieldArgs
 
@@ -125,13 +110,7 @@ class SquareArgs extends FieldArgs {
 }
 </code></pre>
 
-
-
-
 <p>We can make a program that uses those arguments by extending <code>ArgMain</code>:</p>
-
-
-
 
 <pre><code>import com.quantifind.sumac.{ArgMain, FieldArgs}
 
@@ -144,40 +123,22 @@ object PrintSquares extends ArgMain[SquareArgs] {
 }
 </code></pre>
 
-
-
-
 <p>And we&rsquo;re done!  Sumac automatically figures out the names &amp; types of the arguments from the fields of <code>SquareArgs</code>, using
 reflection.  Take a second to appreciate how DRY this makes your code.  In your code, you already name your arguments and
  give them types.  You don&rsquo;t need to repeat that information at all.  Nor do you get your arguments parsed into some
  weird &ldquo;holder&rdquo; object &mdash; you wanted an <code>Int</code>, so Sumac gave you an <code>Int</code>.</p>
 
-
-
-
 <h2>Mixing Traits For Composable Arguments</h2>
-
-
-
 
 <p>So far so good, but we&rsquo;ve basically just recreated functionality that already exists in Optional, another arg parsing
 library.  In fact, Optional lets you put the argument names right in your definition of <code>main</code>, without making you
 create the helper &ldquo;Args&rdquo; class.</p>
 
-
-
-
 <p>But it turns out that having your arguments live in a well-defined class is a good thing, for a number of reasons.  The
 most important one is that you can create standard sets of arguments using traits, then mix them together into different
 Arg classes.</p>
 
-
-
-
 <p>For example, lets say that you often find yourself in need of one or more of:</p>
-
-
-
 
 <ul>
 <li>A connection to <a href="http://mongodb.org">MongoDB</a></li>
@@ -187,12 +148,7 @@ Arg classes.</p>
 </ul>
 
 
-
-
 <p>You might define the following traits:</p>
-
-
-
 
 <pre><code>trait MongoArgs extends FieldArgs {
   var mongo: String = _
@@ -217,13 +173,7 @@ trait DataFileArgs extends FieldArgs {
 }
 </code></pre>
 
-
-
-
 <p>Then you might define a a few different programs that make use of these traits:</p>
-
-
-
 
 <pre><code>class CustomerReportArgs extends SparkContextArgs with CustomerArgs with DataFileArgs
 object CustomerReport extends ArgMain[CustomerReportArgs] {
@@ -260,13 +210,7 @@ object ShowCustomerMeta extends ArgMain[ShowCustomerMetaArgs] {
 }
 </code></pre>
 
-
-
-
 <p>By defining the traits once, we get to</p>
-
-
-
 
 <ol>
 <li>Standardize the names for arguments.  After a few uses, we learn to always use &ldquo;&mdash;mongo <blah>&rdquo;, not &ldquo;&mdash;mongoHost
@@ -275,29 +219,15 @@ object ShowCustomerMeta extends ArgMain[ShowCustomerMetaArgs] {
 </ol>
 
 
-
-
 <p>We&rsquo;re not limited to using fields defined in the standard traits &mdash; individual programs can always add in
 their own arguments.  For example, with <code>RollupBuilder</code>  we can add the argument &ldquo;&mdash;useApproximateRollups true&rdquo; to
  control its behavior.</p>
 
-
-
-
 <p>Of course, none of this would be possible without the power of traits in Scala :)</p>
-
-
-
 
 <h2>And That&rsquo;s Not All!</h2>
 
-
-
-
 <p>There&rsquo;s a lot more to Sumac:</p>
-
-
-
 
 <ul>
 <li>Out-of-the-box support for parsing <code>String</code>,<code>Int</code>,<code>Long</code>,<code>Float</code>,<code>Double</code>,<code>Boolean</code>,<code>File</code>,<code>Regex</code>, as well as <code>List</code>s and <code>Set</code>s
@@ -316,115 +246,29 @@ the command line, and now call it from within another program, by just filling i
 </ul>
 
 
-
-
 <h2>Open Source</h2>
-
-
-
 
 <p>We&rsquo;re really happy to be releasing this as open source as a way to give back.  Sumac is solving such a general purpose
 problem that we want everyone to take advantage of it.  After all, we were inspired by Optional, another open source
 project.  We use Sumac very extensively, have good units tests, and feel that its definitely ready
  to be integrated into production environments.</p>
 
-
-
-
 <p>That&rsquo;s not to say its &ldquo;complete&rdquo; by any means &mdash; there is a long list of features we&rsquo;d still like to add when we get
 around to it.  We&rsquo;d love for the community as a whole to improve upon it by giving feedback and submitting pull requests.</p>
 
-
       </div>
   </section>
 </article>
 
+      
     
-      <article>
-  <aside>
-      <span class='post-date'>January  4, 2013</span> 
-  </aside>
-
-  <section>
-      <header>
-        <h3 class='post-title'>
-          <a href="/posts/spark-unit-test">Unit Testing With Spark</a>
-        </h3>
-        <span class="post-author"><a class='author' href='/author/imran/'>Imran</a></span>
-      </header>
-      <div class="body-text">
-        <p>One of the great things about Spark is the ability to use it on just one machine in &ldquo;local mode.&rdquo;  Not only is this useful
-for trying out Spark before setting up a cluster, it makes it easy to use Spark in your unit tests.  It was easy enough
-to write one test using Spark, but we ran into a couple of issues when we went to integrate them into test suite:</p>
-
-
-
-
-<p class='more'><a href='/posts/spark-unit-test'>MORE</a></p>
-      </div>
-  </section>
-</article>
-
+      
     
-      <article>
-  <aside>
-      <span class='post-date'>January  4, 2013</span> 
-  </aside>
-
-  <section>
-      <header>
-        <h3 class='post-title'>
-          <a href="/posts/logging-post">Configuring Spark Logs</a>
-        </h3>
-        <span class="post-author"><a class='author' href='/author/imran/'>Imran</a></span>
-      </header>
-      <div class="body-text">
-        <p>After you run a few Spark jobs, you&rsquo;ll realize that Spark spits out a lot of logging messages.  At first, we found
-this too distracting, so we turned off all Spark logs.  But that was too heavy-handed &mdash; we always wanted to see <em>some</em>
-of the log messages, and of course, when we needed to debug something, we wanted everything.</p>
-
-
-
-
-<p class='more'><a href='/posts/logging-post'>MORE</a></p>
-      </div>
-  </section>
-</article>
-
+      
     
-      <article>
-  <aside>
-      <span class='post-date'>January  3, 2013</span> 
-  </aside>
-
-  <section>
-      <header>
-        <h3 class='post-title'>
-          <a href="/posts/welcome">Welcome to our tech blog</a>
-        </h3>
-        <span class="post-author"><a class='author' href='/author/john stockton/'>John Stockton</a></span>
-      </header>
-      <div class="body-text">
-        <p>Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.</p>
-
-
-
-
-<p>Some of these things we can share and some we can&rsquo;t, and our aim with this blog is to share what we can.  This will also be a channel for us to give a bit back to the same open source community that makes our lives easier.</p>
-
-
-
-
-<p>Part of our aim here is purely self-interested: to attract talented engineers.  If you&rsquo;re a developer or data scientist with an interest in what we do, please email jobs@quantifind.com.  We look forward to hearing from you.</p>
-
-
-      </div>
-  </section>
-</article>
-
+      
     
 </div>
-
 
     </div>
 

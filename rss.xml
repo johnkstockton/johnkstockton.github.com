@@ -6,9 +6,190 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Thu, 10 Jan 2013 15:30:07 -0800</pubDate>
-    <lastBuildDate>Thu, 10 Jan 2013 15:30:07 -0800</lastBuildDate>
+    <pubDate>Mon, 13 May 2013 10:50:24 -0700</pubDate>
+    <lastBuildDate>Mon, 13 May 2013 10:50:24 -0700</lastBuildDate>
 
+    
+    <item>
+      <title>Sumac</title>
+      <link>http://blog.quantifind.com/posts/Sumac</link>
+      <pubDate>Mon, 13 May 2013 00:00:00 -0700</pubDate>
+      <author></author>
+      <guid>http://blog.quantifind.com/posts/Sumac</guid>
+      <description>&lt;p&gt;We&amp;rsquo;re proud to announce the release of &lt;strong&gt;&lt;a href=&quot;https://github.com/quantifind/Sumac&quot;&gt;Sumac&lt;/a&gt;&lt;/strong&gt;, our first open source library.
+Sumac is a simple, lighweight library for parsing command line arguments in Scala.  It is available for download on
+Sonatype; to use, add this to your sbt definitions:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&quot;com.quantifind&quot; % &quot;sumac_2.9.3&quot; % &quot;0.1&quot;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;Another Argument Parsing Library?&lt;/h2&gt;
+
+&lt;p&gt;We know, there are already lots of argument parsing libaries out there, even scala specific ones.  Does the world really
+need yet another one?&lt;/p&gt;
+
+&lt;p&gt;Yes, it does.  Most libraries require ludicrous amounts of configuration to define even the simplest set of arguments.
+Sumac gets rid of all the boilerplate.&lt;/p&gt;
+
+&lt;p&gt;As an example, say you want to write a program that prints out all integers in a range along with their squares.  So you need
+two arguments, &amp;ldquo;from&amp;rdquo; and &amp;ldquo;to&amp;rdquo;, both integers.  With Sumac, just make a class that extends &lt;code&gt;FieldArgs&lt;/code&gt; with appropriately
+named and typed fields.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import com.quantifind.sumac.FieldArgs
+
+class SquareArgs extends FieldArgs {
+  var from: Int = _
+  var to: Int = _
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We can make a program that uses those arguments by extending &lt;code&gt;ArgMain&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import com.quantifind.sumac.{ArgMain, FieldArgs}
+
+object PrintSquares extends ArgMain[SquareArgs] {
+  def main(args: SquareArgs) {
+    (args.from to args.to).foreach{i =&amp;gt;
+      System.out.println(i + &quot;\t&quot; + (i*i))
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;And we&amp;rsquo;re done!  Sumac automatically figures out the names &amp;amp; types of the arguments from the fields of &lt;code&gt;SquareArgs&lt;/code&gt;, using
+reflection.  Take a second to appreciate how DRY this makes your code.  In your code, you already name your arguments and
+ give them types.  You don&amp;rsquo;t need to repeat that information at all.  Nor do you get your arguments parsed into some
+ weird &amp;ldquo;holder&amp;rdquo; object &amp;mdash; you wanted an &lt;code&gt;Int&lt;/code&gt;, so Sumac gave you an &lt;code&gt;Int&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Mixing Traits For Composable Arguments&lt;/h2&gt;
+
+&lt;p&gt;So far so good, but we&amp;rsquo;ve basically just recreated functionality that already exists in Optional, another arg parsing
+library.  In fact, Optional lets you put the argument names right in your definition of &lt;code&gt;main&lt;/code&gt;, without making you
+create the helper &amp;ldquo;Args&amp;rdquo; class.&lt;/p&gt;
+
+&lt;p&gt;But it turns out that having your arguments live in a well-defined class is a good thing, for a number of reasons.  The
+most important one is that you can create standard sets of arguments using traits, then mix them together into different
+Arg classes.&lt;/p&gt;
+
+&lt;p&gt;For example, lets say that you often find yourself in need of one or more of:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;A connection to &lt;a href=&quot;http://mongodb.org&quot;&gt;MongoDB&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A &lt;a href=&quot;http://spark-project.org&quot;&gt;SparkContext&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;A customer ID&lt;/li&gt;
+&lt;li&gt;A location for data files&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;p&gt;You might define the following traits:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;trait MongoArgs extends FieldArgs {
+  var mongo: String = _
+  def mongoConn: MongoConnection = ...
+}
+
+trait SparkContextArgs extends FieldArgs {
+  var sparkMaster: String = _
+  var sparkJobName: String = _
+  def sparkContext: SparkContext = ...
+}
+
+trait CustomerArgs extends FieldArgs {
+  var customerId: Int = _
+}
+
+trait DataFileArgs extends FieldArgs {
+  var transactionLogDirs: List[String] = _
+  var monthlyRollupDir: String = _
+  def transactionLogRdd(sc: SparkContext) =
+    sc.hadoopFile(transactionLogDirs.mkString(&quot;,&quot;))
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then you might define a a few different programs that make use of these traits:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class CustomerReportArgs extends SparkContextArgs with CustomerArgs with DataFileArgs
+object CustomerReport extends ArgMain[CustomerReportArgs] {
+  def main(args: CustomerReportArgs) {
+    val sc = args.sparkContext
+    val logs = args.transactionLogRdd(sc)
+    // ... use spark to analyze data for one customer ...
+  }
+}
+
+class RollupBuilderArgs extends SparkContextArgs with DataFileArgs with MongoArgs {
+  var useApproximateRollups: Boolean = false
+}
+object RollupBuilder extends ArgMain[RollupBuilderArgs] {
+  def main(args: RollupBuilderArgs) {
+    val sc = args.sparkContext
+    val logs = sc.hadoopFile(args.transactionLogDir)
+    val config = OurCustomConfig(args.mongoConnection)
+    val rollups = if (args.useApproximateRollups) {
+      // ...
+    } else {
+      // ...
+    }
+    rollups.saveAsTextFile(args.monthlyRollupDir + ...)
+  }
+}
+
+class ShowCustomerMetaArgs extends CustomerArgs with MongoArgs
+object ShowCustomerMeta extends ArgMain[ShowCustomerMetaArgs] {
+  def main(args: ShowCustomerMetaArgs) {
+    val config = OurCustomConfig(args.mongoConnection)
+    println(config.getCustomerConfig(args.customerId))
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;By defining the traits once, we get to&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Standardize the names for arguments.  After a few uses, we learn to always use &amp;ldquo;&amp;mdash;mongo &lt;blah&gt;&amp;rdquo;, not &amp;ldquo;&amp;mdash;mongoHost
+&lt;blah&gt;&amp;rdquo; or &amp;ldquo;&amp;mdash;mongoDB &lt;blah&gt;&amp;rdquo;, even if its my first use of a particular class.&lt;/li&gt;
+&lt;li&gt;Define common helper methods that are easily shared.&lt;/li&gt;
+&lt;/ol&gt;
+
+
+&lt;p&gt;We&amp;rsquo;re not limited to using fields defined in the standard traits &amp;mdash; individual programs can always add in
+their own arguments.  For example, with &lt;code&gt;RollupBuilder&lt;/code&gt;  we can add the argument &amp;ldquo;&amp;mdash;useApproximateRollups true&amp;rdquo; to
+ control its behavior.&lt;/p&gt;
+
+&lt;p&gt;Of course, none of this would be possible without the power of traits in Scala :)&lt;/p&gt;
+
+&lt;h2&gt;And That&amp;rsquo;s Not All!&lt;/h2&gt;
+
+&lt;p&gt;There&amp;rsquo;s a lot more to Sumac:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Out-of-the-box support for parsing &lt;code&gt;String&lt;/code&gt;,&lt;code&gt;Int&lt;/code&gt;,&lt;code&gt;Long&lt;/code&gt;,&lt;code&gt;Float&lt;/code&gt;,&lt;code&gt;Double&lt;/code&gt;,&lt;code&gt;Boolean&lt;/code&gt;,&lt;code&gt;File&lt;/code&gt;,&lt;code&gt;Regex&lt;/code&gt;, as well as &lt;code&gt;List&lt;/code&gt;s and &lt;code&gt;Set&lt;/code&gt;s
+whose type parameter is any of the other supported types.  (Well, actually you can only use a type parameter that extends
+&lt;code&gt;AnyRef&lt;/code&gt;, because of the limitations of using java&amp;rsquo;s reflection.)&lt;/li&gt;
+&lt;li&gt;Easily define your own custom parser for other types.  (We use this to parse joda &lt;code&gt;DateTime&lt;/code&gt; objects.)&lt;/li&gt;
+&lt;li&gt;You can add custom validation logic, eg. to make sure &lt;code&gt;limit &amp;gt; 0&lt;/code&gt; or to make sure &lt;code&gt;start &amp;lt; end&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;If you don&amp;rsquo;t want the command line argument to have the same name as the field, you can customize it with an Annotation.&lt;/li&gt;
+&lt;li&gt;The code is very modular.  In particular, definition of arguments is totally separate from parsing.  At quantifind,
+we use this create internal tools which convert an argument list into a simple web UI.&lt;/li&gt;
+&lt;li&gt;Using args objects leads to composable programs.  Its very easy to take a program which was written to be called from
+the command line, and now call it from within another program, by just filling in the appropriate arg object.&lt;/li&gt;
+&lt;li&gt;Super lightweight.  Its a small amount of scala code, with &lt;em&gt;no&lt;/em&gt; external dependencies at all.&lt;/li&gt;
+&lt;li&gt;We&amp;rsquo;re working on adding support for pulling arguments out of &lt;a href=&quot;http://zookeeper.apache.org&quot;&gt;ZooKeeper&lt;/a&gt; in the &amp;ldquo;zk&amp;rdquo;
+  module.  It&amp;rsquo;s already working, but hasn&amp;rsquo;t been tested much and api changes are still likely.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+&lt;h2&gt;Open Source&lt;/h2&gt;
+
+&lt;p&gt;We&amp;rsquo;re really happy to be releasing this as open source as a way to give back.  Sumac is solving such a general purpose
+problem that we want everyone to take advantage of it.  After all, we were inspired by Optional, another open source
+project.  We use Sumac very extensively, have good units tests, and feel that its definitely ready
+ to be integrated into production environments.&lt;/p&gt;
+
+&lt;p&gt;That&amp;rsquo;s not to say its &amp;ldquo;complete&amp;rdquo; by any means &amp;mdash; there is a long list of features we&amp;rsquo;d still like to add when we get
+around to it.  We&amp;rsquo;d love for the community as a whole to improve upon it by giving feedback and submitting pull requests.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Unit Testing With Spark</title>
