@@ -6,8 +6,8 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Mon, 13 May 2013 11:44:12 -0700</pubDate>
-    <lastBuildDate>Mon, 13 May 2013 11:44:12 -0700</lastBuildDate>
+    <pubDate>Tue, 14 May 2013 14:15:28 -0700</pubDate>
+    <lastBuildDate>Tue, 14 May 2013 14:15:28 -0700</lastBuildDate>
 
     
     <item>
@@ -55,7 +55,7 @@ class SquareArgs extends FieldArgs {
 object PrintSquares extends ArgMain[SquareArgs] {
   def main(args: SquareArgs) {
     (args.from to args.to).foreach{i =&amp;gt;
-      System.out.println(i + &quot;\t&quot; + (i*i))
+      println(i + &quot;\t&quot; + (i*i))
     }
   }
 }

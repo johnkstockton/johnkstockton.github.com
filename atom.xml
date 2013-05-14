@@ -4,7 +4,7 @@
   <title>qfBlog</title>
   <link href="http://blog.quantifind.com"/>
   <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
-  <updated>2013-05-13T11:44:12-07:00</updated>
+  <updated>2013-05-14T14:15:28-07:00</updated>
   <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
@@ -60,7 +60,7 @@ class SquareArgs extends FieldArgs {
 object PrintSquares extends ArgMain[SquareArgs] {
   def main(args: SquareArgs) {
     (args.from to args.to).foreach{i =&amp;gt;
-      System.out.println(i + &quot;\t&quot; + (i*i))
+      println(i + &quot;\t&quot; + (i*i))
     }
   }
 }
