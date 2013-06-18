@@ -1,3 +1,4 @@
+require 'jekyll/tagging'
 # encoding: utf-8
 #
 # Jekyll author page generator.
@@ -18,7 +19,6 @@
 # - author_dir:          The subfolder to build author pages in (default is 'authors').
 # - author_title_prefix: The string used before the author name in the page title (default is
 #                          'Author: ').
-
 module Jekyll
 
   # The AuthorIndex class creates a single author page for the specified author.
@@ -58,7 +58,8 @@ module Jekyll
     #
     #  +author_dir+ is the String path to the author folder.
     #  +author+     is the author currently being processed.
-    def write_author_index(author_dir, author)      
+    def write_author_index(author_dir, author)    
+	  Tagger.new().generate(self) unless Tagger.site
       index = AuthorIndex.new(self, self.source, author_dir, author)
       index.render(self.layouts, site_payload)
       index.write(self.dest)
