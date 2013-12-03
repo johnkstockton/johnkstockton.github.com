@@ -12,7 +12,7 @@ when the application fails.
 
 <!--more-->
 
-In this post, we'll first explain how messages can get dropped, and then introduce our solution to the problem, that we've made into an [open-source](https://github.com/quantifind/kafka-utils) wrapper around
+In this post, we'll first explain how messages can get dropped, and then introduce our solution to the problem, that we've made into an [open source wrapper](https://github.com/quantifind/kafka-utils) around
 the kafka consumer api.
 
 # Dropped Messages with a Basic Kafka Consumer
@@ -98,13 +98,26 @@ Second, you need to write another class that will receive a group of those buffe
 
 By just defining these two simple classes, we can read from kafka with multiple threads, periodically bulk insert messages into a db, and we're guaranteed that
 all messages get inserted into our database at least once.  The library takes care of coordinating work among all the threads, and knowing when to commit progress
-to kafka.
+to kafka.  You tie all the pieces together and put things into motion with one final call:
 
-It's worth noting that to do this properly, with the existing kafka api, you'd need to halt *all* threads that are reading from kafka.  That is because the kafka
+    KafkaBatchConsumer(
+      zookeeper="localhost:2181",
+      group="test_consumer_group",
+      topic="test_topic",
+      maxThreads = 4,
+      workerFactory = () => new MessageBufferingWorker[String,String](),
+      batchMerger = new InsertCountersInPostgrs(db)
+    )
+
+Of course, there are more optional parameters, for eg. configuring how often batches get processed.  Note that even though there are multiple threads involved in processing
+one batch, you don't need to worry about concurrency in your code.  The library ensures that `worker.addMessageToBatch()` and `worker.getBatch()` are not called
+concurrently.
+
+To do this properly with the existing kafka api, you'd need to halt *all* threads that are reading from kafka.  That is because the kafka
 api only lets you commit progress for all threads simultaneously.  But this library gets around that issue, by going beneath the public api, and using a feature
 that will be introduced in kafka 0.8.1: [committing offsets for one partition at a time](https://issues.apache.org/jira/browse/KAFKA-1144).
 
-So, by using our kafka-consumer library, you:
+By using our kafka-consumer library, you:
 
 1. Guarantee _at least once_ processing of all messages by your application.
 2. Avoid blocking all threads during a commit, increasing throughput. 
@@ -133,7 +146,7 @@ were processed, despite any restarts.
 # Notes
 
 We got lots of help from the [kafka user list](http://mail-archives.apache.org/mod_mbox/kafka-users/) while discovering the problem and figuring out a fix. 
-We hope that open-sourcing our solution to the problem is our way
+We hope that open sourcing our solution to the problem is our way
 of giving back to the community.  Also, we're hoping the community will continue to improve on our solution   (Pull requests always welcome!).  We'd love to add an
 api for _exactly once_ processing, and also some tools for monitoring the progress of your kafka consumers.  Hopefully something
 similar will even make it into the standard api with kafka 0.9, [currently scheduled for release next April](https://cwiki.apache.org/confluence/display/KAFKA/Future+release+plan).
