@@ -6,9 +6,9 @@ tags:
   - Kafka
 ---
 
-[Kafka](https://kafka.apache.org/) is a distributed message queuing system with "strong durability and fault-tolerance guarantees".  Under normal use,
-consumers are guaranteed to see messages _at least once_.  However, as we'll see, unless applications are extremely careful, messages can easily get dropped
-when the application fails.
+At Quantifind, we use Kafka across our data processing pipeline. [Kafka](https://kafka.apache.org/) is a distributed message queuing system and, with a simple setup, it provides us with durability and fault-tolerance. In our proessing pipeline, we need to be sure we are not leaking data and that every message sent from one component to the other will be received. This is why we like Kafka, as it guarantees that consumers will see each published message at least once.
+
+However, as we'll see, while Kafka keeps this guarantee, if the consumer doesn't interact with the queue properly, messages can easily be dropped in some cases (in particular when the application fails).
 
 <!--more-->
 
