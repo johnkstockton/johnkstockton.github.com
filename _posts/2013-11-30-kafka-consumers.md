@@ -137,8 +137,8 @@ also makes sure that it commits progress as soon as each batch is fully processe
 Many systems might not even care about the problems we've discovered with the _at least once_ guarantee.  After all, the problem only occurs when your application
 dies.  So if you've got a rock-solid application that never dies, then you're fine.
 
-But, we like relying on kafka as a key distributed, fault-tolerant part of our stack.  Which means that sometime we can get away with writing simple, non-distributed apps,
-that might die if something goes wrong with their host; but they'll just pick up from kafka again when they restart.  Plus,
+But, we like relying on kafka as an important  distributed, fault-tolerant part of our stack.  Which means that sometime we can get away with writing simple, non-distributed apps,
+that might die if something goes wrong; but they'll just pick up from kafka again when they restart.  Plus,
 we've found these guarantees especially important when developing an app.  As we do test deployments, apps get started and stopped a lot, and as we're testing out
 new code, inevitably we trigger some exceptions in our code.  Its nice to know that we're still guaranteed all messages
 were processed, despite any restarts.
@@ -147,6 +147,6 @@ were processed, despite any restarts.
 
 We got lots of help from the [kafka user list](http://mail-archives.apache.org/mod_mbox/kafka-users/) while discovering the problem and figuring out a fix. 
 We hope that open sourcing our solution to the problem is our way
-of giving back to the community.  Also, we're hoping the community will continue to improve on our solution   (Pull requests always welcome!).  We'd love to add an
+of giving back to the community.  Also, we're hoping the community will continue to improve on our solution.  (Pull requests always welcome!)  We'd love to add an
 api for _exactly once_ processing, and also some tools for monitoring the progress of your kafka consumers.  Hopefully something
 similar will even make it into the standard api with kafka 0.9, [currently scheduled for release next April](https://cwiki.apache.org/confluence/display/KAFKA/Future+release+plan).
