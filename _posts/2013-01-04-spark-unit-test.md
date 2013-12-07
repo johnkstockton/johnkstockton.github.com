@@ -12,6 +12,10 @@ to write one test using Spark, but we ran into a couple of issues when we went t
 
 <!--more-->
 
+_**UPDATE 12/07/13:** This was originally written for use with Spark 0.6.  Spark has changed the API slightly since then, so
+the code here is out of date.  Nonetheless, these tips are still useful "in spirit", though you'll
+need to update the code samples to get them to work._
+
 1. *Isolation*.  If one test was broken, we didn't want it to mess up the SparkContext for other tests.  Each test
 should get its own clean SparkContext.
 2. *Limited Logging*.  The logs from Spark are great while you're actively debugging a test.  But they are so verbose
@@ -81,6 +85,23 @@ for our tests, so we created a new `sparkTest` method in a `SparkTestUtils` trai
           }
         }
       }
+    }
+
+    object SparkUtil {
+      def silenceSpark() {
+        setLogLevels(Level.WARN, Seq("spark", "org.eclipse.jetty", "akka"))
+      }
+      
+      def setLogLevels(level: org.apache.log4j.Level, loggers: TraversableOnce[String]) = {
+        loggers.map{
+          loggerName =>
+            val logger = Logger.getLogger(loggerName)
+            val prevLevel = logger.getLevel()
+            logger.setLevel(level)
+            loggerName -> prevLevel
+        }.toMap
+      }
+
     }
 
 
