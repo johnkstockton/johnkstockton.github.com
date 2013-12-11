@@ -24,9 +24,9 @@ table{
   z-index: -1;
   width: 100%;
   height: 100%;
-  background-image: url(/assets/images/stripe.png);
+  background-image: url(/assets/images/dots.svg);
   background-repeat: repeat, no-repeat;
-  background-size: 7px 7px, cover;
+  background-size: auto, cover;
   background-position: 0 0, fixed;
   top: 0;
   opacity: 0;
@@ -44,27 +44,42 @@ table{
 }
 
 #identity{
-  width: 137px;
-  height: 90px;
+  width: 149px;
+  height: 190px;
   float: left;
+  margin-top:15px;
   margin-right: 30px;
+  background-color:transparent;
+  padding: 0;
+  border:0;
+  box-sizing: border-box;
 }
 
 #identity a{
-  display: block;
-  width: 100%;
-  height: 100%;
-  background-image: url(/assets/images/identity.png);
-  background-repeat: no-repeat;
-  background-position: 0 -11px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	background-image: url(/assets/images/blog-logo.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	text-indent: -99999px;
 }
 
-#tag-cloud{
+
+#tag-cloud, .quantifind-home{
   margin-top: 30px;
+}
+#tag-cloud{
+  max-width: 590px;
   float: left;
 }
 
-#tag-cloud a{
+a.quantifind-home {
+	float:right;
+	background-color: #000;
+}
+
+#tag-cloud a, .quantifind-home{
   font-size: 9px;
   background-color: #44A6C1;
   border-top: 1px solid #939598;

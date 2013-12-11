@@ -6,14 +6,14 @@
     <atom:link href="http://blog.quantifind.com/rss.xml" rel="self" type="application/rss+xml" />
     <description></description>
     <language>en-us</language>
-    <pubDate>Tue, 14 May 2013 14:15:28 -0700</pubDate>
-    <lastBuildDate>Tue, 14 May 2013 14:15:28 -0700</lastBuildDate>
+    <pubDate>Wed, 11 Dec 2013 12:10:22 -0600</pubDate>
+    <lastBuildDate>Wed, 11 Dec 2013 12:10:22 -0600</lastBuildDate>
 
     
     <item>
       <title>Sumac</title>
       <link>http://blog.quantifind.com/posts/Sumac</link>
-      <pubDate>Mon, 13 May 2013 00:00:00 -0700</pubDate>
+      <pubDate>Mon, 13 May 2013 00:00:00 -0500</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/Sumac</guid>
       <description>&lt;p&gt;We&amp;rsquo;re proud to announce the release of &lt;strong&gt;&lt;a href=&quot;https://github.com/quantifind/Sumac&quot;&gt;Sumac&lt;/a&gt;&lt;/strong&gt;, our first open source library.
@@ -199,7 +199,7 @@ around to it.  We&amp;rsquo;d love for the community as a whole to improve upon 
     <item>
       <title>Unit Testing With Spark</title>
       <link>http://blog.quantifind.com/posts/spark-unit-test</link>
-      <pubDate>Fri, 04 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 -0600</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/spark-unit-test</guid>
       <description>&lt;p&gt;One of the great things about Spark is the ability to use it on just one machine in &amp;ldquo;local mode.&amp;rdquo;  Not only is this useful
@@ -208,6 +208,10 @@ to write one test using Spark, but we ran into a couple of issues when we went t
 
 &lt;!--more--&gt;
 
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;UPDATE 12/07/13:&lt;/strong&gt; This was originally written for use with Spark 0.6.  Spark has changed the API slightly since then, so
+the code here is out of date.  Nonetheless, these tips are still useful &amp;ldquo;in spirit&amp;rdquo;, though you&amp;rsquo;ll
+need to update the code samples to get them to work.&lt;/em&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;em&gt;Isolation&lt;/em&gt;.  If one test was broken, we didn&amp;rsquo;t want it to mess up the SparkContext for other tests.  Each test
@@ -284,6 +288,23 @@ trait SparkTestUtils extends FunSuite {
     }
   }
 }
+
+object SparkUtil {
+  def silenceSpark() {
+    setLogLevels(Level.WARN, Seq(&quot;spark&quot;, &quot;org.eclipse.jetty&quot;, &quot;akka&quot;))
+  }
+
+  def setLogLevels(level: org.apache.log4j.Level, loggers: TraversableOnce[String]) = {
+    loggers.map{
+      loggerName =&amp;gt;
+        val logger = Logger.getLogger(loggerName)
+        val prevLevel = logger.getLevel()
+        logger.setLevel(level)
+        loggerName -&amp;gt; prevLevel
+    }.toMap
+  }
+
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We can then use this in our tests:&lt;/p&gt;
@@ -347,7 +368,7 @@ it would be useful for others as well.&lt;/p&gt;
     <item>
       <title>Configuring Spark Logs</title>
       <link>http://blog.quantifind.com/posts/logging-post</link>
-      <pubDate>Fri, 04 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Fri, 04 Jan 2013 00:00:00 -0600</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/logging-post</guid>
       <description>&lt;p&gt;After you run a few Spark jobs, you&amp;rsquo;ll realize that Spark spits out a lot of logging messages.  At first, we found
@@ -436,7 +457,7 @@ setup.&lt;/p&gt;
     <item>
       <title>Welcome to our tech blog</title>
       <link>http://blog.quantifind.com/posts/welcome</link>
-      <pubDate>Thu, 03 Jan 2013 00:00:00 -0800</pubDate>
+      <pubDate>Thu, 03 Jan 2013 00:00:00 -0600</pubDate>
       <author></author>
       <guid>http://blog.quantifind.com/posts/welcome</guid>
       <description>&lt;p&gt;Our goal as a company is to create a data-driven product that is powerful but simple.  This simplicity is for the benefit of usability, but it happens to hide a lot of things that we have behind the scenes, including masses of data, trained algorithms, and useful bits of code.&lt;/p&gt;

@@ -4,7 +4,7 @@
   <title>qfBlog</title>
   <link href="http://blog.quantifind.com"/>
   <link type="application/atom+xml" rel="self" href="http://blog.quantifind.com/atom.xml"/>
-  <updated>2013-05-14T14:15:28-07:00</updated>
+  <updated>2013-12-11T12:10:22-06:00</updated>
   <id> http://blog.quantifind.com </id>
   <author>
     <name>quantiFind</name>
@@ -16,8 +16,8 @@
     <id>http://blog.quantifind.com/posts/Sumac</id>
     <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/Sumac"/>
     <title>Sumac</title>
-    <published>2013-05-13T00:00:00-07:00</published>
-    <updated>2013-05-13T00:00:00-07:00</updated>
+    <published>2013-05-13T00:00:00-05:00</published>
+    <updated>2013-05-13T00:00:00-05:00</updated>
     <author>
       <name></name>
     </author>
@@ -205,8 +205,8 @@ around to it.  We&amp;rsquo;d love for the community as a whole to improve upon 
     <id>http://blog.quantifind.com/posts/spark-unit-test</id>
     <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/spark-unit-test"/>
     <title>Unit Testing With Spark</title>
-    <published>2013-01-04T00:00:00-08:00</published>
-    <updated>2013-01-04T00:00:00-08:00</updated>
+    <published>2013-01-04T00:00:00-06:00</published>
+    <updated>2013-01-04T00:00:00-06:00</updated>
     <author>
       <name></name>
     </author>
@@ -216,6 +216,10 @@ to write one test using Spark, but we ran into a couple of issues when we went t
 
 &lt;!--more--&gt;
 
+
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;UPDATE 12/07/13:&lt;/strong&gt; This was originally written for use with Spark 0.6.  Spark has changed the API slightly since then, so
+the code here is out of date.  Nonetheless, these tips are still useful &amp;ldquo;in spirit&amp;rdquo;, though you&amp;rsquo;ll
+need to update the code samples to get them to work.&lt;/em&gt;&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;em&gt;Isolation&lt;/em&gt;.  If one test was broken, we didn&amp;rsquo;t want it to mess up the SparkContext for other tests.  Each test
@@ -292,6 +296,23 @@ trait SparkTestUtils extends FunSuite {
     }
   }
 }
+
+object SparkUtil {
+  def silenceSpark() {
+    setLogLevels(Level.WARN, Seq(&quot;spark&quot;, &quot;org.eclipse.jetty&quot;, &quot;akka&quot;))
+  }
+
+  def setLogLevels(level: org.apache.log4j.Level, loggers: TraversableOnce[String]) = {
+    loggers.map{
+      loggerName =&amp;gt;
+        val logger = Logger.getLogger(loggerName)
+        val prevLevel = logger.getLevel()
+        logger.setLevel(level)
+        loggerName -&amp;gt; prevLevel
+    }.toMap
+  }
+
+}
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;We can then use this in our tests:&lt;/p&gt;
@@ -356,8 +377,8 @@ it would be useful for others as well.&lt;/p&gt;
     <id>http://blog.quantifind.com/posts/logging-post</id>
     <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/logging-post"/>
     <title>Configuring Spark Logs</title>
-    <published>2013-01-04T00:00:00-08:00</published>
-    <updated>2013-01-04T00:00:00-08:00</updated>
+    <published>2013-01-04T00:00:00-06:00</published>
+    <updated>2013-01-04T00:00:00-06:00</updated>
     <author>
       <name></name>
     </author>
@@ -448,8 +469,8 @@ setup.&lt;/p&gt;
     <id>http://blog.quantifind.com/posts/welcome</id>
     <link type="text/html" rel="alternate" href="http://blog.quantifind.com/posts/welcome"/>
     <title>Welcome to our tech blog</title>
-    <published>2013-01-03T00:00:00-08:00</published>
-    <updated>2013-01-03T00:00:00-08:00</updated>
+    <published>2013-01-03T00:00:00-06:00</published>
+    <updated>2013-01-03T00:00:00-06:00</updated>
     <author>
       <name></name>
     </author>

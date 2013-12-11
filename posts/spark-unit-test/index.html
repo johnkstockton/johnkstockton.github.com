@@ -47,7 +47,7 @@
     }
     $(function(){
       var photo = photos[Math.round( Math.random() * ( photos.length - 1 ) )];
-      $('#b').css( 'background-image', 'url(/assets/images/stripe.png), url(' + photo + ')')
+      $('#b').css( 'background-image', 'url(/assets/images/dots.svg), url(' + photo + ')')
             .css('opacity', 1)
     });
   </script>
@@ -56,12 +56,12 @@
 <div id="b"></div>
 <div class="container cf">
     <header id="main-header" class="cf">
-      <h1 id="identity"><a href="/"></a></h1>
+      <h1 id="identity"><a href="/">Quantifind Blog</a></h1>
     <div id="tag-cloud">
       <a href="/" class="home">ALL POSTS</a>
       <a href="/tag/Spark.html" class="set-5">Spark</a>
-</div>
-
+	</div>
+	<a class="quantifind-home" href="http://quantifind.com">QUANTIFIND.COM</a>
     </header>
 
     <div class="content">
@@ -85,6 +85,10 @@ to write one test using Spark, but we ran into a couple of issues when we went t
 
 <!--more-->
 
+
+<p><em><strong>UPDATE 12/07/13:</strong> This was originally written for use with Spark 0.6.  Spark has changed the API slightly since then, so
+the code here is out of date.  Nonetheless, these tips are still useful &ldquo;in spirit&rdquo;, though you&rsquo;ll
+need to update the code samples to get them to work.</em></p>
 
 <ol>
 <li><em>Isolation</em>.  If one test was broken, we didn&rsquo;t want it to mess up the SparkContext for other tests.  Each test
@@ -160,6 +164,23 @@ trait SparkTestUtils extends FunSuite {
       }
     }
   }
+}
+
+object SparkUtil {
+  def silenceSpark() {
+    setLogLevels(Level.WARN, Seq("spark", "org.eclipse.jetty", "akka"))
+  }
+
+  def setLogLevels(level: org.apache.log4j.Level, loggers: TraversableOnce[String]) = {
+    loggers.map{
+      loggerName =&gt;
+        val logger = Logger.getLogger(loggerName)
+        val prevLevel = logger.getLevel()
+        logger.setLevel(level)
+        loggerName -&gt; prevLevel
+    }.toMap
+  }
+
 }
 </code></pre>
 
